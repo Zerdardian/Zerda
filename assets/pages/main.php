@@ -1,1 +1,3 @@
-test
+<?php
+    $zerda = new Zerdardian;
+?>

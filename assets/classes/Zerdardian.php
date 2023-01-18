@@ -10,6 +10,7 @@ class Zerdardian
     private $port;
 
     public $getdata;
+    public $baseurl;
     public $url;
     public $page;
     protected $location;
@@ -47,11 +48,14 @@ class Zerdardian
                     $this->getdata[$name] = $item;
                 }
             }
+        }
 
-            $this->url = "https://zerda.test";
-            $this->page = "/";
-            $this->location = "/";
+        $this->baseurl = "https://zerda.test";
+        $this->url = "https://zerda.test";
+        $this->page = "/";
+        $this->location = "/";
 
+        if (!empty($this->getdata)) {
             foreach ($this->getdata as $data) {
                 $this->url .= '/' . $data;
                 $this->page .= $data . '/';
@@ -67,14 +71,21 @@ class Zerdardian
         }
     }
 
-    function setPageData()
+    public function setPageData()
     {
-        $this->pagename = '`' . $this->page . '` | Zerdardian';
-        $this->pagedescription = '' . $this->page . ' | Zerdardian';
-        $this->pageimage = null;
+        $data = $this->sql->query("SELECT * FROM pagedata WHERE `page`='" . $this->page . "'")->fetch();
+        if (empty($data)) {
+            $this->pagename = '`' . $this->page . '` | Zerdardian';
+            $this->pagedescription = '' . $this->page . ' | Zerdardian';
+            $this->pageimage = null;
+        } else {
+            $this->pagename =  $data['pagename'] . ' | Zerdardian';
+            $this->pagedescription = $data['pagedescription'] . ' | Zerdardian';
+            $this->pageimage = $this->baseurl . 'assets/images/meta/' . $data['pageimage'];
+        }
     }
 
-    function getPageInfo()
+    public function getPageInfo()
     {
         $return['name'] = $this->pagename;
         $return['description'] = $this->pagename;
@@ -86,7 +97,7 @@ class Zerdardian
 
 
 
-    function setPage()
+    public function setPage()
     {
         if (!empty($this->getdata[1]) && $this->getdata[1] == 'ajax') {
         } else
@@ -96,20 +107,22 @@ class Zerdardian
             if (empty($_GET)) {
                 include_once "./assets/pages/main.php";
             } else {
-                if(file_exists('./assets/pages'.$this->location)) {
-                    include_once "./assets/pages".$this->location;
+                if (file_exists('./assets/pages' . $this->location)) {
+                    include_once "./assets/pages" . $this->location;
                 }
             }
             include_once "./assets/include/footer.php";
         }
     }
 
-    function getPageData(int $number)
+    public function getPageData(int $number)
     {
-        return $this->getdata[$number];
+        if (!empty($this->getdata)) {
+            return $this->getdata[$number];
+        }
     }
 
-    function returnUrl()
+    public function returnUrl()
     {
         return $this->url;
     }

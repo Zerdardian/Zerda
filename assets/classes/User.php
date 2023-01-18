@@ -25,4 +25,20 @@
                 }     
             }
         }
+
+        public function LogIn($user, $password) {
+
+        }
+
+        public function register($email, $username, $password) {
+            
+        }
+
+        public function setUser() {
+
+        }
+
+        public function getUser() {
+
+        }
     }
