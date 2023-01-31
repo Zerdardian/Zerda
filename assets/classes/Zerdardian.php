@@ -53,13 +53,12 @@ class Zerdardian
         $this->baseurl = "https://zerda.test";
         $this->url = "https://zerda.test";
         $this->page = "/";
-        $this->location = "/";
 
         if (!empty($this->getdata)) {
             foreach ($this->getdata as $data) {
                 $this->url .= '/' . $data;
                 $this->page .= $data . '/';
-                $this->location .= $data . '/';
+                $this->location .= '/' .$data;
             }
 
             $this->url .= "/";
