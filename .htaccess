@@ -16,7 +16,6 @@ RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$ index.php?1=$1&2=$2&3=$3&4=$4 [L
 RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$ index.php?1=$1&2=$2&3=$3&4=$4&5=$5 [L,QSA]
 RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$ index.php?1=$1&2=$2&3=$3&4=$4&5=$5&6=$6 [L,QSA]
 
-
 <Files .htaccess>
 order allow,deny
 deny from all

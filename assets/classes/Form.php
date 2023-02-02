@@ -65,6 +65,15 @@
             $this->i++;
         }
 
+        function formDate(string $name, bool $required = false, string $toptext = null, bool $disabled = false) {
+            $this->formdata[$this->i]['type'] = 'date';
+            $this->formdata[$this->i]['name'] = $name;
+            $this->formdata[$this->i]['required'] = $required;
+            $this->formdata[$this->i]['toptext'] = $toptext;
+            $this->formdata[$this->i]['disabled'] = $disabled;
+            $this->i++;
+        }
+
         function formSubmit(string $name, string $custom = null, bool $disabled = false) {
             $this->formdata[$this->i]['type'] = 'submit';
             $this->formdata[$this->i]['name'] = $name;
@@ -88,6 +97,9 @@
                     case 'password':
                         $form.="<input type='password' name='".$data['name']."' id='".$data['name']."' class='form textform password' placeholder='".$data['placeholder']."' $disabled>";
                         break;
+                    case 'date':
+                        $form.="<input type='date' name='".$data['name']."' id='".$data['name']."' class='form dateform date'>";
+                        break;
                     case 'submit':
                         $value = '';
                         if(!empty($data['custom'])) $value = "value='".$data['custom']."'";
@@ -105,4 +117,3 @@
             return $this->formdata;
         }
     }
-?>

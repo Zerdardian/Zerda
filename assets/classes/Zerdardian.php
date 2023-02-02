@@ -41,11 +41,13 @@ class Zerdardian
             $this->error['message'] = $e;
         }
 
+        unset($_SESSION['page']);
         foreach ($_GET as $name => $value) {
             if (intval($name)) {
                 if ($value != '.php') {
                     $item = str_replace('.php', '', $_GET[$name]);
                     $this->getdata[$name] = $item;
+                    $_SESSION['page'][$name] = $item;
                 }
             }
         }
@@ -58,7 +60,7 @@ class Zerdardian
             foreach ($this->getdata as $data) {
                 $this->url .= '/' . $data;
                 $this->page .= $data . '/';
-                $this->location .= '/' .$data;
+                $this->location .= '/' . $data;
             }
 
             $this->url .= "/";
@@ -102,14 +104,22 @@ class Zerdardian
         } else
         if (!empty($this->getdata[1]) && $this->getdata[1] == 'api') {
         } else {
-            include_once "./assets/include/header.php";
-            if (empty($_GET)) {
-                include_once "./assets/pages/main.php";
-            } else {
-                if (file_exists('./assets/pages' . $this->location)) {
-                    include_once "./assets/pages" . $this->location;
+            if ($this->getdata[1] != 'assets') {
+                include_once "./assets/include/header.php";
+                if ($_SESSION['page'][1] == 'user') {
+                    include_once "./assets/pages/user.php";
+                } else {
+                    if (empty($_GET)) {
+                        include_once "./assets/pages/main.php";
+                    } else {
+                        if (file_exists('./assets/pages' . $this->location)) {
+                            include_once "./assets/pages" . $this->location;
+                        }
+                    }
                 }
             }
+
+
             include_once "./assets/include/footer.php";
         }
     }
@@ -124,5 +134,10 @@ class Zerdardian
     public function returnUrl()
     {
         return $this->url;
+    }
+
+    public function returnSQL()
+    {
+        return $this->sql;
     }
 }
