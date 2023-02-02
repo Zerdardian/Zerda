@@ -12,6 +12,7 @@
         function __construct($sql)
         {
             $this->sql = $sql;
+            $this->checkifLogged();
             if(!empty($_SESSION['user'])) {
                 $userid = $_SESSION['user']['id'];
                 $data = $this->sql->query("SELECT user.id, user.email, userinfo.upperusername as username FROM user, userinfo WHERE user.id='$userid' AND userinfo.user_id='$userid'")->fetch();
@@ -24,6 +25,15 @@
                     unset($_SESSION['user']);
                     header('location: '.$this->location);
                 }     
+            }
+        }
+
+        public function checkifLogged()
+        {
+            if ($_SESSION['page'][1] == 'user' || $_SESSION['page'][1] == 'admin') {
+                if (empty($_SESSION['user'])) {
+                    header('location: /login/');
+                }
             }
         }
 

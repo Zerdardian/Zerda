@@ -104,9 +104,9 @@ class Zerdardian
         } else
         if (!empty($this->getdata[1]) && $this->getdata[1] == 'api') {
         } else {
-            if ($this->getdata[1] != 'assets') {
+            if (empty($this->getdata[1]) || $this->getdata[1] != 'assets') {
                 include_once "./assets/include/header.php";
-                if ($_SESSION['page'][1] == 'user') {
+                if (!empty($_SESSION['page'][1]) && $_SESSION['page'][1] == 'user') {
                     include_once "./assets/pages/user.php";
                 } else {
                     if (empty($_GET)) {
@@ -116,11 +116,9 @@ class Zerdardian
                             include_once "./assets/pages" . $this->location;
                         }
                     }
+                    include_once "./assets/include/footer.php";
                 }
-            }
-
-
-            include_once "./assets/include/footer.php";
+            } 
         }
     }
 
