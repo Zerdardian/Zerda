@@ -1,5 +1,7 @@
 <?php
     class User extends Zerdardian {
+        protected $sql;
+
         protected $id;
         public $username;
         protected $email;
@@ -7,18 +9,18 @@
         public $name;
 
         // Load basic User data.
-        function __construct()
+        function __construct($sql)
         {
+            $this->sql = $sql;
+            $this->checkifLogged();
             if(!empty($_SESSION['user'])) {
-                $userid = $_SESSION['user']['userid'];
-                $data = $this->sql->query("SELECT user.id, user.userid, user.email, userinfo.upperusername as username FROM user, userinfo WHERE user.userid='$userid' AND userinfo.userid='$userid'")->fetch();
+                $userid = $_SESSION['user']['id'];
+                $data = $this->sql->query("SELECT user.id, user.email, userinfo.upperusername as username FROM user, userinfo WHERE user.id='$userid' AND userinfo.user_id='$userid'")->fetch();
 
                 if(!empty($data)) {
                     $this->id = $_SESSION['user']['id'];
-                    $this->userid = $_SESSION['user']['userid'];
                     $this->username = $_SESSION['user']['username'];
                     $this->email = $_SESSION['user']['email'];
-                    $this->name = $_SESSION['user']['name'];
                 } else {
                     unset($_SESSION['user']);
                     header('location: '.$this->location);
@@ -26,19 +28,37 @@
             }
         }
 
-        public function LogIn($user, $password) {
-
+        public function checkifLogged()
+        {
+            if ($_SESSION['page'][1] == 'user' || $_SESSION['page'][1] == 'admin') {
+                if (empty($_SESSION['user'])) {
+                    header('location: /login/');
+                }
+            }
         }
 
-        public function register($email, $username, $password) {
-            
+        public function setPage() {
+            if(!empty($_SESSION['page'][2])) {
+                if(file_exists("./assets/pages/user/".$_SESSION['page'][3].".php")) {
+                    include_once "./assets/pages/user/".$_SESSION['page'][3].".php";
+                } else {
+                    include_once "./assets/error/user404.php";
+                }
+            } else {
+                include_once "./assets/pages/user/main.php";
+            }
         }
 
-        public function setUser() {
+        public function getProfilePicture() {
+            $profilepicture = "/images/user/";
+            $userid = $this->id;
+            $check = $this->sql->query("SELECT pf, pf_type as type FROM `userinfo` WHERE `user_id`='$userid'")->fetch();
 
-        }
+            if(empty($check['pf'])) {
+                $profilepicture = "/assets/images/basis/user-picture.png";
+            } else {
 
-        public function getUser() {
-
+            }
+            return $profilepicture;
         }
     }

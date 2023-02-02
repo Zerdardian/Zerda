@@ -17,4 +17,72 @@ html div.main, body div.main {
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 10px;
+}
+html div.main div.usermenu, body div.main div.usermenu {
+  width: calc(100% + 100px);
+  height: 200px;
+  position: relative;
+  margin-top: -10px;
+  margin-left: -50px;
+}
+html div.main div.usermenu .background, body div.main div.usermenu .background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: whitesmoke;
+  z-index: 0;
+}
+html div.main div.usermenu .info, body div.main div.usermenu .info {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+html div.main div.usermenu .info div.profilepicture, body div.main div.usermenu .info div.profilepicture {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  bottom: 0px;
+  left: 50px;
+}
+html div.main div.usermenu .info div.profilepicture img, body div.main div.usermenu .info div.profilepicture img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+html div.main div.usermenu .info div.username, body div.main div.usermenu .info div.username {
+  position: absolute;
+  left: 200px;
+  bottom: -5px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 20px;
+  background-color: greenyellow;
+}
+html div.main div.usermenu .usermenu, body div.main div.usermenu .usermenu {
+  width: calc(100% - 50px);
+  height: 70px;
+  padding-left: 75px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: lightgrey;
+}
+html div.main div.usermenu .usermenu > *, body div.main div.usermenu .usermenu > * {
+  width: 16.6666666667%;
+  box-sizing: border-box;
+}
+html div.main div.usermenu .usermenu a, body div.main div.usermenu .usermenu a {
+  color: black;
+  text-decoration: none;
+}
+html div.main div.usermenu .usermenu a div.menuitem, body div.main div.usermenu .usermenu a div.menuitem {
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  padding-top: 20px;
+}
+html div.main div.usermenu .usermenu a div.menuitem:hover, body div.main div.usermenu .usermenu a div.menuitem:hover {
+  background-color: grey;
+  color: white;
 }/*# sourceMappingURL=basis.css.map */
