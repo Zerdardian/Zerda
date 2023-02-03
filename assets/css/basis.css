@@ -61,7 +61,7 @@ html div.main div.usermenu .info div.username, body div.main div.usermenu .info 
   background-color: greenyellow;
 }
 html div.main div.usermenu .usermenu, body div.main div.usermenu .usermenu {
-  width: calc(100% - 50px);
+  width: calc(100% - 25px);
   height: 70px;
   padding-left: 75px;
   display: flex;
