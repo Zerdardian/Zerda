@@ -187,6 +187,8 @@ class Discord
                     <a href="/user/connections/discord/">
                         <button>Connect Discord</button>
                     </a>
+                    <p>Connecting with Discord gives you the ability to log in with your Discord Account, skipping a step of course.<br>
+                    You also future proof yourself for future projects that I will make. This includes Discord!</p>
                 </div>
             </div>
             <?php

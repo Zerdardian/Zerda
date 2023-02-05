@@ -36,4 +36,24 @@ html,body {
 
         @import "user";
     }
+
+    button, input[type=button], input[type=submit] {
+      min-width: 125px;
+      min-height: 50px;
+
+      border-radius: 20px;
+      background-color: rgb(116, 116, 116);
+      color: white;
+      box-shadow: 10px 10px rgba(0, 0, 0, 0.2);
+      transition: 0.5s;
+
+      &:hover {
+        min-width: 175px;
+        min-height: 60px;
+        box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+      }
+    }
+    .row-2 {
+      @include flex-grid-items(2);
+    }
 }

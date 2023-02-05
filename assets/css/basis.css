@@ -24,7 +24,7 @@ html div.main div.usermenu, body div.main div.usermenu {
   position: relative;
   margin-top: -10px;
   margin-left: -50px;
-  margin-bottom: 200px;
+  margin-bottom: 120px;
 }
 html div.main div.usermenu .background, body div.main div.usermenu .background {
   width: 100%;
@@ -89,4 +89,82 @@ html div.main div.usermenu .usermenu a div.menuitem:hover, body div.main div.use
 }
 html div.main div.mainuserpage, body div.main div.mainuserpage {
   margin-top: 100px;
+}
+html div.main div.connections, body div.main div.connections {
+  width: 100%;
+  height: 100%;
+}
+html div.main div.connections div.allconnections, body div.main div.connections div.allconnections {
+  display: flex;
+  flex-wrap: wrap;
+}
+html div.main div.connections div.allconnections > *, body div.main div.connections div.allconnections > * {
+  width: 33.3333333333%;
+  box-sizing: border-box;
+}
+html div.main div.connections div.allconnections div.discord, body div.main div.connections div.allconnections div.discord {
+  width: calc(33% - 100px);
+  margin-left: 50px;
+  margin-right: 50px;
+  position: relative;
+}
+html div.main div.connections div.allconnections div.discord div.connected, body div.main div.connections div.allconnections div.discord div.connected {
+  border-radius: 20px;
+}
+html div.main div.connections div.allconnections div.discord div.connected div.maincontent div.banner, body div.main div.connections div.allconnections div.discord div.connected div.maincontent div.banner {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+}
+html div.main div.connections div.allconnections div.discord div.connected div.maincontent div.banner img, body div.main div.connections div.allconnections div.discord div.connected div.maincontent div.banner img {
+  width: 100%;
+  height: 100%;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+html div.main div.connections div.allconnections div.discord div.connected div.maincontent div.content, body div.main div.connections div.allconnections div.discord div.connected div.maincontent div.content {
+  margin-bottom: 20px;
+}
+html div.main div.connections div.allconnections div.discord div.connected div.maincontent div.content div.profilepicture img, body div.main div.connections div.allconnections div.discord div.connected div.maincontent div.content div.profilepicture img {
+  width: 100px;
+  height: 100px;
+  margin-left: 75px;
+  border-radius: 50%;
+}
+html div.main div.connections div.allconnections div.discord div.connected div.maincontent div.content div.userinfo, body div.main div.connections div.allconnections div.discord div.connected div.maincontent div.content div.userinfo {
+  width: calc(50% - 25px);
+  padding-right: 25px;
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+}
+html div.main div.connections div.allconnections div.discord div.connected div.maincontent div.update a button, body div.main div.connections div.allconnections div.discord div.connected div.maincontent div.update a button {
+  margin-left: 50%;
+  margin-bottom: -20px;
+}
+html div.main div.connections div.allconnections div.discord div.notconnected, body div.main div.connections div.allconnections div.discord div.notconnected {
+  width: 100%;
+  height: 100%;
+}
+html button, html input[type=button], html input[type=submit], body button, body input[type=button], body input[type=submit] {
+  min-width: 125px;
+  min-height: 50px;
+  border-radius: 20px;
+  background-color: rgb(116, 116, 116);
+  color: white;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+html button:hover, html input[type=button]:hover, html input[type=submit]:hover, body button:hover, body input[type=button]:hover, body input[type=submit]:hover {
+  min-width: 175px;
+  min-height: 60px;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+}
+html .row-2, body .row-2 {
+  display: flex;
+  flex-wrap: wrap;
+}
+html .row-2 > *, body .row-2 > * {
+  width: 50%;
+  box-sizing: border-box;
 }/*# sourceMappingURL=basis.css.map */
