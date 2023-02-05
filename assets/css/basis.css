@@ -24,6 +24,7 @@ html div.main div.usermenu, body div.main div.usermenu {
   position: relative;
   margin-top: -10px;
   margin-left: -50px;
+  margin-bottom: 200px;
 }
 html div.main div.usermenu .background, body div.main div.usermenu .background {
   width: 100%;
