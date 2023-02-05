@@ -2,6 +2,10 @@
     $zerdardian = new Zerdardian;
     $form = new Form;
     $login = new Login($zerdardian->returnSQL());
+    $discord = new Discord($zerdardian->returnSQL());
+    if(!empty($_GET['logtype']) && $_GET['logtype'] == 'discord') {
+        $discord->init($zerdardian->returnUrl()."?logtype=discord");
+    }
     unset($zerdardian);
 
     $login->checkIfLogged();
@@ -17,5 +21,12 @@
 <div class="login" id="login">
     <div class="loginform" id="loginform">
         <?=$loginform?>
+    </div>
+    <div class="platforms">
+        <a href="/connect/discord/">
+            <button>
+                Connect with Discord
+            </button>
+        </a>
     </div>
 </div>

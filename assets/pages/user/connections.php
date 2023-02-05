@@ -1,15 +1,26 @@
 <?php
     $zerdardian = new Zerdardian();
     $discord = new Discord($zerdardian->returnSQL());
+    $steam = new Steam($zerdardian->returnSQL());
     if(!empty($_SESSION['page'][3]) && $_SESSION['page'][3] == 'delete') {
         if(!empty($_SESSION['page'][4]) && $_SESSION['page'][4] == 'discord') {
             $discord->remove();
             header('location: /user/connections');
         }
+
+        if(!empty($_SESSION['page'][4]) && $_SESSION['page'][4] == 'steam') {
+            $steam->remove();
+            header('location: /user/connections');
+        }
     }
 
+    if(!empty($_SESSION['page'][3]) && $_SESSION['page'][3] == 'steam') {
+        $steam->init($zerdardian->returnUrl());
+        $steam->CreateAcc();
+    }  
+
     if(!empty($_SESSION['page'][3]) && $_SESSION['page'][3] == 'discord') {
-        $discord->init('https://zerda.test/user/connections/discord/');
+        $discord->init($zerdardian->returnUrl());
     }
 ?>
 
@@ -19,6 +30,8 @@
             <?=$discord->createDiv();?>
         </div>
         <div class="twitch"></div>
-        <div class="steam"></div>
+        <div class="steam">
+            <?=$steam->createDiv();?>
+        </div>
     </div>
 </div>
