@@ -6,6 +6,7 @@ class Discord
     private $clientsecret;
     public $baseurl = "https://discord.com";
     private $bot_token = null;
+    protected $user;
 
     public $error;
     public $continue = true;
@@ -19,6 +20,8 @@ class Discord
         if (!empty($_ENV['DISCORD_BOT_ID'])) {
             $this->bot_token = $_ENV['DISCORD_BOT_ID'];
         }
+
+        $this->returnUser();
     }
 
     public function gen_state()
@@ -125,17 +128,75 @@ class Discord
         }
     }
 
-    public function returnUser()
+    protected function returnUser()
     {
         $check = $this->sql->query("SELECT * FROM `discord` WHERE `user_id`=" . $_SESSION['user']['id'])->fetch();
         if (!empty($check)) {
-            $return['id'] = $check['discordid'];
-            $return['username'] = $check['username'];
-            $return['discriminator'] = $check['discriminator'];
-            $return['avatar'] = "https://cdn.discordapp.com/avatars/".$check['discordid']."/".$check['avatar'].$this->is_animated($check['avatar']);
-            $return['banner'] = "https://cdn.discordapp.com/banners/".$check['discordid']."/".$check['banner'].$this->is_animated($check['banner']);
-            $return['banner_color'] = $check['banner_color'];
-            return $return;
+            $this->user['code'] = 200;
+            $this->user['id'] = $check['discordid'];
+            $this->user['username'] = $check['username'];
+            $this->user['discriminator'] = $check['discriminator'];
+            $this->user['avatar'] = "https://cdn.discordapp.com/avatars/".$check['discordid']."/".$check['avatar'].$this->is_animated($check['avatar']);
+            if(!empty($check['banner'])) {
+                $this->user['banner'] = "https://cdn.discordapp.com/banners/".$check['discordid']."/".$check['banner'].$this->is_animated($check['banner']);
+            }
+            $this->user['banner_color'] = $check['banner_color'];
+        } else {
+            $this->user['code'] = 404;
+        }
+    }
+
+    public function createDiv() {
+        if($this->user['code'] == 200) {
+            ?>
+            <div class="connected" data-discordid="<?=$this->user['id']?>" style="background-color:<?=$this->user['banner_color']?>">
+                <div class="maincontent">
+                    <div class="banner">
+                        <?php
+                            if(!empty($this->user['banner'])) {
+                                ?>
+                                    <img src="<?=$this->user['banner']?>" alt="<?=$this->user['username']?>'s banner">
+                                <?php
+                            }
+                        ?>
+                    </div>
+                    <div class="content row-2">
+                        <div class="profilepicture">
+                            <img src="<?=$this->user['avatar']?>" alt="<?=$this->user['username']?>'s avatar">
+                        </div>
+                        <div class="userinfo">
+                            Connected Account:<br>
+                            <?=$this->user['username']?>#<?=$this->user['discriminator']?>
+                        </div>
+                    </div>
+                    <div class="update row-2">
+                        <a href="/user/connections/discord/">
+                            <button>Update</button>
+                        </a>
+                        <a href="/user/connections/delete/discord/">
+                            <button>Verwijderen</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <?php
+        } else {
+            ?>
+            <div class="notconnected">
+                <div class="connect">
+                    <a href="/user/connections/discord/">
+                        <button>Connect Discord</button>
+                    </a>
+                </div>
+            </div>
+            <?php
+        }
+    }
+
+    public function remove() {
+        $check = $this->sql->query("SELECT * FROM `discord` WHERE `user_id`=" . $_SESSION['user']['id'])->fetch();
+        if(!empty($check)) {
+            $this->sql->prepare("DELETE FROM `discord` WHERE `user_id`=".$_SESSION['user']['id'])->execute();
         }
     }
 
