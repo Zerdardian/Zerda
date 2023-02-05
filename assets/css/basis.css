@@ -24,6 +24,7 @@ html div.main div.usermenu, body div.main div.usermenu {
   position: relative;
   margin-top: -10px;
   margin-left: -50px;
+  margin-bottom: 200px;
 }
 html div.main div.usermenu .background, body div.main div.usermenu .background {
   width: 100%;
@@ -61,7 +62,7 @@ html div.main div.usermenu .info div.username, body div.main div.usermenu .info 
   background-color: greenyellow;
 }
 html div.main div.usermenu .usermenu, body div.main div.usermenu .usermenu {
-  width: calc(100% - 50px);
+  width: calc(100% - 25px);
   height: 70px;
   padding-left: 75px;
   display: flex;

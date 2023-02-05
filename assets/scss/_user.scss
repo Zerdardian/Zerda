@@ -5,6 +5,7 @@ div.usermenu {
     position: relative;
     margin-top: -10px;
     margin-left: -50px;
+    margin-bottom: 200px;
 
     .background {
         width: 100%;
@@ -53,7 +54,7 @@ div.usermenu {
     }
 
     .usermenu {
-        width: calc(100% - 50px);
+        width: calc(100% - 25px);
         height: 70px;
         padding-left: 75px;
 
