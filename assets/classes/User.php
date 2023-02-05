@@ -39,8 +39,8 @@
 
         public function setPage() {
             if(!empty($_SESSION['page'][2])) {
-                if(file_exists("./assets/pages/user/".$_SESSION['page'][3].".php")) {
-                    include_once "./assets/pages/user/".$_SESSION['page'][3].".php";
+                if(file_exists("./assets/pages/user/".$_SESSION['page'][2].".php")) {
+                    include_once "./assets/pages/user/".$_SESSION['page'][2].".php";
                 } else {
                     include_once "./assets/error/user404.php";
                 }
