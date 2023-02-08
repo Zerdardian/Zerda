@@ -34,19 +34,23 @@
         }
 
         public function CreateReview() {
-            $this->sql->prepare("INSERT INTO review (`review_base_id`, `reviewtype`, `review_title`) VALUES (?, ?, ?)")->execute([$this->newReviewId, $this->new_review_type, $this->new_review_name]);
-            $select = $this->sql->query("SELECT id FROM review WHERE `review_base_id`='".$this->newReviewId."'")->fetch();
+            $this->setReviewId();
+            $this->sql->prepare("INSERT INTO review (`review_base_id`, `reviewtype`, `review_title`) VALUES (?, ?, ?)")->execute([$this->reviewId, $this->reviewType, $this->reviewName]);
+            $select = $this->sql->query("SELECT id FROM review WHERE `review_base_id`='".$this->reviewId."'")->fetch();
             if(!empty($select)) {
                 print_r($select);
             }
         }
 
-        public function updateReview() {
-
+        public function updateReview($reviewid) {
+            $this->setReviewId($reviewid);
         }
 
-        public function getReview() {
-
+        public function getReview($name, $urlcode) {
+            $urlcode = strip_tags($urlcode);
+            $name = strip_tags($name);
+            $select = $this->sql->prepare("SELECT * FROM review WHERE `review_name`=? AND `review_urlcode`=?");
+            $post = $select->fetch([$name, $urlcode]);
         }
     }
 ?>
