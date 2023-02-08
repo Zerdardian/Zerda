@@ -108,12 +108,19 @@ class Zerdardian
                 include_once "./assets/include/header.php";
                 if (!empty($_SESSION['page'][1]) && $_SESSION['page'][1] == 'user') {
                     include_once "./assets/pages/user.php";
+                } else if (!empty($_SESSION['page'][1]) && $_SESSION['page'][1] == 'review') {
+                    include_once "./assets/pages/review.php";
                 } else {
                     if (empty($_GET)) {
                         include_once "./assets/pages/main.php";
                     } else {
                         if (file_exists('./assets/pages' . $this->location)) {
                             include_once "./assets/pages" . $this->location;
+                        } else {
+                            $this->pagename = 'No page found... | Zerdardian';
+                            $this->pagedescription = 'This is an unavalable page. | Zerdardian';
+                            $this->pageimage = null;
+                            include_once "./assets/pages/error/404.php";
                         }
                     }
                     include_once "./assets/include/footer.php";
