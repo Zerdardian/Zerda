@@ -9,6 +9,7 @@ class Steam
     function __construct($sql)
     {
         $this->sql = $sql;
+        $this->apikey = $_ENV['STEAMAPIKEY'];
     }
 
     public function init($redirect)
@@ -77,7 +78,12 @@ class Steam
         if (!empty($this->userData)) {
             $check = $this->sql->query("SELECT * FROM `steam` WHERE `user_id`=" . $_SESSION['user']['id'])->fetch();
             if (empty($check)) {
-                $this->sql->prepare("INSERT INTO STEAM (`user_id`, `steamid`, `personaname`, `profileurl`, `avatar`) VALUES (?, ?, ?, ?, ?)")->execute([$_SESSION['user']['id'], $this->userData['steamid'], $this->userData['personaname'], $this->userData['profileurl'], $this->userData['avatar']]);
+                $select = $this->sql->query("SELECT * FROM `steam` WHERE `steamid`=" . $this->userData['steamid'])->fetch();
+                if (empty($select)) {
+                    $this->sql->prepare("INSERT INTO STEAM (`user_id`, `steamid`, `personaname`, `profileurl`, `avatar`) VALUES (?, ?, ?, ?, ?)")->execute([$_SESSION['user']['id'], $this->userData['steamid'], $this->userData['personaname'], $this->userData['profileurl'], $this->userData['avatarfull']]);
+                } else {
+                    $this->sql->prepare("UPDATE `steam` SET `user_id`=? WHERE `steamid`=" . $this->userData['steamid'])->execute([$_SESSION['user']['id']]);
+                }
             } else {
                 if ($check['steamid'] == $this->userData['steamid']) {
                     $update = $this->sql->prepare("UPDATE `steam` SET `personaname`=?, `profileurl`=?, `avatar`=? WHERE `user_id`=" . $_SESSION['user']['id']);
@@ -89,27 +95,68 @@ class Steam
         }
     }
 
-    public function remove() {
+    public function getUser($userid)
+    {
+        // Update before selecting
+        $apikey = $this->apikey;
+        $url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=$apikey&steamids=$userid";
+        $result = file_get_contents($url);
+        $user = json_decode($result);
+
+        // Check if not empty
+        if (!empty($user->response->players)) {
+            foreach ($user->response->players as $player) {
+                $select = $this->sql->query("SELECT * FROM `steam` WHERE `steamid`=" . $player->steamid)->fetch();
+                if (!empty($select)) {
+                    $this->sql->prepare("UPDATE `steam` SET `personaname`=?, `profileurl`=?, `avatar`=? WHERE `steamid`=" . $player->steamid)->execute([$player->personaname, $player->profileurl, $player->avatarfull]);
+                } else {
+                    $this->sql->prepare("INSERT INTO `steam` (`steamid`, `personaname`, `profileurl`, `avatar`) VALUES (?, ?, ?, ?)")->execute([$player->steamid, $player->personaname, $player->profileurl, $player->avatarfull]);
+                }
+            }
+        }
+
+        // The userdata that I keep afterwards.
+        $select = $this->sql->query("SELECT * FROM `steam` WHERE `steamid`=" . $player->steamid)->fetch();
+        $return['user_id'] = $select['user_id'];
+        $return['steamid'] = $select['steamid'];
+        $return['personaname'] = $select['personaname'];
+        $return['profileurl'] = $select['profileurl'];
+        $return['avatar'] = $select['avatar'];
+        return $return;
+    }
+
+    public function remove()
+    {
         $check = $this->sql->query("SELECT * FROM `steam` WHERE `user_id`=" . $_SESSION['user']['id'])->fetch();
-        if(!empty($check)) {
-            $this->sql->query("DELETE FROM `steam` WHERE user_id=".$_SESSION['user']['id'])->execute();
+        if (!empty($check)) {
+            $this->sql->query("DELETE FROM `steam` WHERE user_id=" . $_SESSION['user']['id'])->execute();
         }
     }
 
     public function createDiv()
     {
         $check = $this->sql->query("SELECT * FROM `steam` WHERE `user_id`=" . $_SESSION['user']['id'])->fetch();
-        if(!empty($check)) {
-            ?>
+        if (!empty($check)) {
+            $check = $this->getUser($check['steamid']);
+?>
             <div class="connected">
                 <div class="maincontent">
                     <div class="userinfo">
-                        <div class="profilepicture">
-                            <img src="<?=$check['avatar']?>" alt="">
-                        </div>
-                        <div class="text">
-                            <div class="username">
+                        <div class="profile">
+                            <div class="picture">
+                                <img src="<?= $check['avatar'] ?>" alt="">
+                            </div>
+                            <div class="text">
                                 <?=$check['personaname']?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="games">
+                        <div class="content">
+                            <div class="gameblock">
+                                <div class="empty">
+                                    No games are currently being created or have any connection with Zerdardian. Please try again later
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -123,9 +170,9 @@ class Steam
                     </div>
                 </div>
             </div>
-            <?php
+        <?php
         } else {
-            ?>
+        ?>
             <div class="notconnected">
                 <div class="connect">
                     <a href="/user/connections/steam/">
@@ -137,7 +184,7 @@ class Steam
                     Legal note, This site is not Affiliated or related to anything from the Value Corporation or Steam.
                 </div>
             </div>
-            <?php
+<?php
         }
     }
 }

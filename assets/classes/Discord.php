@@ -166,7 +166,7 @@ class Discord
             $this->user['discriminator'] = $check['discriminator'];
             $this->user['avatar'] = "https://cdn.discordapp.com/avatars/" . $check['discordid'] . "/" . $check['avatar'] . $this->is_animated($check['avatar']);
             if (!empty($check['banner'])) {
-                $this->user['banner'] = "https://cdn.discordapp.com/banners/" . $check['discordid'] . "/" . $check['banner'] . $this->is_animated($check['banner']);
+                $this->user['banner'] = "https://cdn.discordapp.com/banners/" . $check['discordid'] . "/" . $check['banner'] . $this->is_animated($check['banner']).'?size=600';
             }
             $this->user['banner_color'] = $check['banner_color'];
 
