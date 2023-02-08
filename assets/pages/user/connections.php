@@ -21,6 +21,7 @@
 
     if(!empty($_SESSION['page'][3]) && $_SESSION['page'][3] == 'discord') {
         $discord->init($zerdardian->returnUrl());
+        $discord->CreateAcc();
     }
 ?>
 

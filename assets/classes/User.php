@@ -61,4 +61,8 @@
             }
             return $profilepicture;
         }
+
+        public function returnUsername() {
+            return $this->username;
+        }
     }

@@ -102,6 +102,8 @@ class Discord
 
         $user = $result;
 
+        $this->user = $user;
+
         // Script connecting the account to the Zerdardian Account
         if ($_SESSION['page'][1] == 'user' && $_SESSION['page'][2] == 'connections' && !empty($_GET['code'])) {
             $discordid = $user['id'];
@@ -153,6 +155,10 @@ class Discord
                 header('location: /login?error=nodiscacc');
             }
         }
+    }
+
+    public function createAccount() {
+
     }
 
     protected function returnUser()
