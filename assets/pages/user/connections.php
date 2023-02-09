@@ -29,7 +29,6 @@
         <div class="discord">
             <?=$discord->createDiv();?>
         </div>
-        <div class="twitch"></div>
         <div class="steam">
             <?=$steam->createDiv();?>
         </div>
