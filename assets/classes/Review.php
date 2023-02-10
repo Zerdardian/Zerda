@@ -64,13 +64,17 @@ class Review
         $return['base']['head'] = [];
         $return['content']['basis'] = [];
         $return['content']['platform'] = [];
+        $return['platform'] = [];
         $return['links'] = [];
         $urlcode = strip_tags($urlcode);
         $urltype = strip_tags($urltype);
         $select = $this->sql->query("SELECT review.id, review.reviewtype, review.review_public, 
                 review_head.title, review_head.description, review_head.backpicture, review_head.backtype, review_head.logo, review_head.logotype,
                 review_end.verdict, review_end.grade FROM review, review_head, review_end WHERE review.review_url_base='$urlcode' AND review.review_url_info='$urltype' AND review_head.review_id=review.id AND review_end.review_id=review.id");
-
+        $platforms = $this->sql->query("SELECT * FROM review_platform")->fetchAll();
+        foreach($platforms as $platform) {
+            $return['platform'][$platform['id']]['name'] = $platform['name'];
+        }
         $post = $select->fetch();
 
         if (!empty($post)) {
@@ -91,21 +95,27 @@ class Review
                 $i = 0;
                 foreach ($select as $content) {
                     if (empty($content['platform'])) {
-                        $return['content']['basis'][$i]['title'] = $select['title'];
-                        $return['content']['basis'][$i]['description'] = $select['description'];
-                        $return['content']['basis'][$i]['content'] = $select['content'];
-                        $return['content']['basis'][$i]['contentalt'] = $select['contentalt'];
-                        $return['content']['basis'][$i]['contenttype'] = $select['contenttype'];
-                        $i ++;
+                        $return['content']['basis'][$i]['id'] = $content['id'];
+                        $return['content']['basis'][$i]['review_id'] = $content['review_id'];
+                        $return['content']['basis'][$i]['title'] = $content['title'];
+                        $return['content']['basis'][$i]['description'] = $content['description'];
+                        $return['content']['basis'][$i]['content'] = $content['content'];
+                        $return['content']['basis'][$i]['contentalt'] = $content['contentalt'];
+                        $return['content']['basis'][$i]['contenttype'] = $content['contenttype'];
+                        $i++;               
                     } else {
-                        $return['content']['platform'][$select['platform']]['title'] = $select['title'];
-                        $return['content']['platform'][$select['platform']]['description'] = $select['description'];
-                        $return['content']['platform'][$select['platform']]['content'] = $select['content'];
-                        $return['content']['platform'][$select['platform']]['contentalt'] = $select['contentalt'];
-                        $return['content']['platform'][$select['platform']]['contenttype'] = $select['contenttype'];
+                        $return['content']['platform'][$content['platform']]['id'] = $content['id'];
+                        $return['content']['platform'][$content['platform']]['review_id'] = $content['review_id'];
+                        $return['content']['platform'][$content['platform']]['title'] = $content['title'];
+                        $return['content']['platform'][$content['platform']]['description'] = $content['description'];
+                        $return['content']['platform'][$content['platform']]['content'] = $content['content'];
+                        $return['content']['platform'][$content['platform']]['contentalt'] = $content['contentalt'];
+                        $return['content']['platform'][$content['platform']]['contenttype'] = $content['contenttype'];
+                        $return['content']['platform'][$content['platform']]['verdict'] = $content['platform_verdict'];
+                        $return['content']['platform'][$content['platform']]['grade'] = $content['platform_grade'];
                     }
                 }
-                $select = $this->sql->query("SELECT youtube, trailer, twitter, twitch, reddit, instagram FROM review_links WHERE `review_id`=$id")->fetch();
+                $select = $this->sql->query("SELECT youtube, twitter, twitch, reddit, instagram, patreon FROM review_links WHERE `review_id`=$id")->fetch();
                 foreach($select as $key=>$value) {
                     if(!empty($value)) {
                         $return['links'][$key] = $value;
