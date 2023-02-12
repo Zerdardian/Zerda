@@ -200,6 +200,93 @@ html div.main div.connections div.allconnections div.steam div.connected div.mai
 html div.main div.review.all, body div.main div.review.all {
   width: 100%;
 }
+html div.main div.review.all div.latestreview, body div.main div.review.all div.latestreview {
+  width: 100%;
+  height: 250px;
+  margin-top: 10px;
+  background-color: grey;
+  border-radius: 20px;
+}
+html div.main div.review.all div.latestreview a, body div.main div.review.all div.latestreview a {
+  color: white;
+  text-decoration: none;
+}
+html div.main div.review.all div.latestreview a div.review, body div.main div.review.all div.latestreview a div.review {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+html div.main div.review.all div.latestreview a div.review div.background, body div.main div.review.all div.latestreview a div.review div.background {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+html div.main div.review.all div.latestreview a div.review div.texts, body div.main div.review.all div.latestreview a div.review div.texts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-left: 30px;
+  padding-top: 10px;
+}
+html div.main div.review.all div.latestreview a div.review div.texts div.title, body div.main div.review.all div.latestreview a div.review div.texts div.title {
+  font-size: 50px;
+  font-weight: bold;
+}
+html div.main div.review.all div.latestreview a div.review div.texts div.description, body div.main div.review.all div.latestreview a div.review div.texts div.description {
+  padding-top: 20px;
+  font-size: 20px;
+}
+html div.main div.review.all div.items, body div.main div.review.all div.items {
+  display: flex;
+  flex-wrap: wrap;
+}
+html div.main div.review.all div.items > *, body div.main div.review.all div.items > * {
+  width: 50%;
+  box-sizing: border-box;
+}
+html div.main div.review.all div.items div.type, body div.main div.review.all div.items div.type {
+  width: 20%;
+  margin-right: 5%;
+}
+html div.main div.review.all div.items div.type a button, body div.main div.review.all div.items div.type a button {
+  width: 100%;
+  height: 50px;
+}
+html div.main div.review.all div.items div.reviews, body div.main div.review.all div.items div.reviews {
+  width: 70%;
+  height: 100%;
+  margin-right: 5%;
+}
+html div.main div.review.all div.items div.reviews a, body div.main div.review.all div.items div.reviews a {
+  text-decoration: none;
+  color: white;
+}
+html div.main div.review.all div.items div.reviews a div.review, body div.main div.review.all div.items div.reviews a div.review {
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+  border-radius: 20px;
+  background-color: grey;
+  transition: 1s;
+}
+html div.main div.review.all div.items div.reviews a div.review div.title, body div.main div.review.all div.items div.reviews a div.review div.title {
+  padding-top: 5px;
+  padding-left: 20px;
+  font-size: 40px;
+  font-weight: bold;
+}
+html div.main div.review.all div.items div.reviews a div.review div.description, body div.main div.review.all div.items div.reviews a div.review div.description {
+  opacity: 0;
+  padding-left: 20px;
+  margin-top: 10px;
+  transition: 0.5s;
+}
+html div.main div.review.all div.items div.reviews a div.review:hover, body div.main div.review.all div.items div.reviews a div.review:hover {
+  height: 150px;
+}
+html div.main div.review.all div.items div.reviews a div.review:hover div.description, body div.main div.review.all div.items div.reviews a div.review:hover div.description {
+  opacity: 1;
+}
 html div.main div.review.single div.head, body div.main div.review.single div.head {
   width: calc(100% + 100px);
   height: 250px;
@@ -382,6 +469,7 @@ html div.main div.review.single div.footer, body div.main div.review.single div.
   background-color: rgb(94, 94, 94);
   color: white;
   height: 200px;
+  position: relative;
 }
 html div.main div.review.single div.footer div.end, body div.main div.review.single div.footer div.end {
   width: 100%;
@@ -399,13 +487,35 @@ html div.main div.review.single div.footer div.end div.content div.verdict, body
   padding-left: 50px;
   padding-top: 20px;
 }
+html div.main div.review.single div.footer div.end div.content div.verdict div.title, body div.main div.review.single div.footer div.end div.content div.verdict div.title {
+  font-size: 40px;
+  font-weight: bold;
+}
 html div.main div.review.single div.footer div.end div.content div.grade, body div.main div.review.single div.footer div.end div.content div.grade {
   width: 20%;
+  position: relative;
+}
+html div.main div.review.single div.footer div.end div.content div.grade div.number, body div.main div.review.single div.footer div.end div.content div.grade div.number {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  background-color: red;
+  border-radius: 20px;
+}
+html div.main div.review.single div.footer div.end div.content div.grade div.number div.text, body div.main div.review.single div.footer div.end div.content div.grade div.number div.text {
+  text-align: center;
+  font-size: 40px;
+  padding-top: 20px;
 }
 html div.main div.review.single div.footer div.links, body div.main div.review.single div.footer div.links {
-  width: 100%;
+  width: 300px;
   display: flex;
   flex-wrap: wrap;
+  position: absolute;
+  bottom: 0;
+  right: 20px;
 }
 html div.main div.review.single div.footer div.links > *, body div.main div.review.single div.footer div.links > * {
   width: 16.6666666667%;

@@ -146,7 +146,11 @@ $link = $base['links'];
                     </div>
                 </div>
                 <div class="grade">
-                    <?= $footer['grade'] ?>
+                    <div class="number">
+                        <div class="text">
+                            <?= $footer['grade'] ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
