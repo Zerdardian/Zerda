@@ -123,8 +123,8 @@ class Zerdardian
                             include_once "./assets/pages/error/404.php";
                         }
                     }
-                    include_once "./assets/include/footer.php";
                 }
+                include_once "./assets/include/footer.php";
             } 
         }
     }

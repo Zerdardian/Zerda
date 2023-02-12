@@ -35,6 +35,7 @@ html,body {
         padding-top: 10px;
 
         @import "user";
+        @import "review";
     }
 
     button, input[type=button], input[type=submit] {
