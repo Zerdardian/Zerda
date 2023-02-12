@@ -6,6 +6,7 @@ $(document).ready(function () {
     $('.text').change(function() {
         var id = $('.reviewedit').attr('data-reviewid');
         var name = $(this).attr('name');
+        var type = $(this).attr('data-type');
         var value = $(this).val();
 
         var data = {

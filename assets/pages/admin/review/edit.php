@@ -9,8 +9,11 @@
                         <div class="url">
                             <div class="text">Set the url</div>
                             <div class="input">
-                                https://zerdardian.com/review/<input type="text" name="review_url_base" id="review_url_base" class='text' value="<?=$review['review_url_base']?>" placeholder="Url base">/<input type="text" name="review_url_info" id="review_url_info" class='text' value="<?=$review['review_url_info']?>" placeholder="Url info">
+                                https://zerdardian.com/review/<input type="text" name="review_url_base" id="review_url_base" class='text' data-type="base" value="<?=$review['review_url_base']?>" placeholder="Url base">/<input type="text" name="review_url_info" id="review_url_info" class='text' data-type="base" value="<?=$review['review_url_info']?>" placeholder="Url info">
                             </div>
+                        </div>
+                        <div class="public">
+                            <input type="checkbox" name="review_public" id="review_public" <?php if($review['review_public'] == true) echo 'checked';?>>
                         </div>
                     </div>
                 </div>
