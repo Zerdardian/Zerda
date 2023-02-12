@@ -1,7 +1,7 @@
 </div>
 </div>
 <footer id="footer" class="footer">
-    
+    <?php if(!empty($_SESSION['user'])) echo $_SESSION['user']['username']?>
 </footer>
 <script src="/assets/js/basis.js"></script>
 <?php

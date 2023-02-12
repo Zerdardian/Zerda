@@ -127,6 +127,8 @@
                                 $select = $db->query("SELECT id FROM user WHERE `email`='$this->email'")->fetch();
                                 $insert = $db->prepare('INSERT INTO `userinfo` (`user_id`, `upperusername`, `birth`) VALUES (?, ?, ?)');
                                 $insert->execute([$select['id'], strtolower($this->username), $this->date]);
+                                $insert = $db->prepare('INSERT INTO `roles` (`user_id`) VALUES (?)');
+                                $insert->execute([$select['id']]);
                                 header('location: /login');
                             } else {
                                 $this->continue = false;
