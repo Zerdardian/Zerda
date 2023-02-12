@@ -118,7 +118,7 @@
                         include_once "./assets/pages/admin/review/create.php";
                         break;
                     case 'edit':
-                        $select = $this->sql->query("SELECT review.id, review.reviewtype, review.review_public, 
+                        $select = $this->sql->query("SELECT review.id, review.reviewtype, review.review_url_base, review.review_url_info, review.review_public, 
                         review_head.title, review_head.description, review_head.backpicture, review_head.backtype, review_head.logo, review_head.logotype,
                         review_end.verdict, review_end.grade FROM review, review_head, review_end WHERE review.review_base_id='".$_SESSION['page'][4]."' AND review_head.review_id=review.id AND review_end.review_id=review.id");
                         $review = $select->fetch();

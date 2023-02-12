@@ -532,6 +532,42 @@ html div.main div.review.single div.footer div.links div.link a img, body div.ma
   width: 100%;
   height: 100%;
 }
+html div.main div.admin.review.reviewedit, body div.main div.admin.review.reviewedit {
+  width: 100%;
+  height: 100%;
+}
+html div.main div.admin.review.reviewedit div.settings, body div.main div.admin.review.reviewedit div.settings {
+  position: relative;
+}
+html div.main div.admin.review.reviewedit div.settings div.openbutton, body div.main div.admin.review.reviewedit div.settings div.openbutton {
+  width: 50px;
+  height: 50px;
+  background-color: black;
+  position: absolute;
+  top: -30px;
+  right: -50px;
+  z-index: 1;
+}
+html div.main div.admin.review.reviewedit div.settings div#settingsmenu, body div.main div.admin.review.reviewedit div.settings div#settingsmenu {
+  display: block;
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+html div.main div.admin.review.reviewedit div.settings div#settingsmenu.hidden, body div.main div.admin.review.reviewedit div.settings div#settingsmenu.hidden {
+  display: none;
+}
+html div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside, body div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside {
+  width: 80%;
+  min-height: 500px;
+  margin: 10%;
+  margin-top: 5%;
+  background-color: whitesmoke;
+  border-radius: 20px;
+}
 html button, html input[type=button], html input[type=submit], body button, body input[type=button], body input[type=submit] {
   min-width: 125px;
   min-height: 50px;
@@ -553,4 +589,4 @@ html .row-2, body .row-2 {
 html .row-2 > *, body .row-2 > * {
   width: 50%;
   box-sizing: border-box;
-}
+}/*# sourceMappingURL=basis.css.map */
