@@ -30,7 +30,7 @@
 
         public function checkifLogged()
         {
-            if ($_SESSION['page'][1] == 'user' || $_SESSION['page'][1] == 'admin') {
+            if (!empty($_SESSION['page'][0]) && $_SESSION['page'][1] == 'user' || !empty($_SESSION['page'][0]) && $_SESSION['page'][1] == 'admin') {
                 if (empty($_SESSION['user'])) {
                     header('location: /login/');
                 }

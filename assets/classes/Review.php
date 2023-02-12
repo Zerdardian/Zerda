@@ -50,13 +50,8 @@ class Review
             $this->sql->prepare("INSERT INTO review_end (`review_id`) VALUES (?)")->execute([$id]);
             $this->sql->prepare("INSERT INTO review_links (`review_id`) VALUES (?)")->execute([$id]);
 
-            header('location: /admin/review/' . $this->reviewId);
+            header('location: /admin/review/edit/' . $this->reviewId);
         }
-    }
-
-    public function updateReview($reviewid)
-    {
-        $this->setReviewId($reviewid);
     }
 
     protected function getReview($urlcode, $urltype)
