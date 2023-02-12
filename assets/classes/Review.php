@@ -72,7 +72,7 @@ class Review
                 review_head.title, review_head.description, review_head.backpicture, review_head.backtype, review_head.logo, review_head.logotype,
                 review_end.verdict, review_end.grade FROM review, review_head, review_end WHERE review.review_url_base='$urlcode' AND review.review_url_info='$urltype' AND review_head.review_id=review.id AND review_end.review_id=review.id");
         $platforms = $this->sql->query("SELECT * FROM review_platform")->fetchAll();
-        foreach($platforms as $platform) {
+        foreach ($platforms as $platform) {
             $return['platform'][$platform['id']]['name'] = $platform['name'];
         }
         $post = $select->fetch();
@@ -102,7 +102,7 @@ class Review
                         $return['content']['basis'][$i]['content'] = $content['content'];
                         $return['content']['basis'][$i]['contentalt'] = $content['contentalt'];
                         $return['content']['basis'][$i]['contenttype'] = $content['contenttype'];
-                        $i++;               
+                        $i++;
                     } else {
                         $return['content']['platform'][$content['platform']]['id'] = $content['id'];
                         $return['content']['platform'][$content['platform']]['review_id'] = $content['review_id'];
@@ -116,8 +116,8 @@ class Review
                     }
                 }
                 $select = $this->sql->query("SELECT youtube, twitter, twitch, reddit, instagram, patreon FROM review_links WHERE `review_id`=$id")->fetch();
-                foreach($select as $key=>$value) {
-                    if(!empty($value)) {
+                foreach ($select as $key => $value) {
+                    if (!empty($value)) {
                         $return['links'][$key] = $value;
                     }
                 }
@@ -129,7 +129,8 @@ class Review
         return $return;
     }
 
-    protected function allReviews() {
+    protected function allReviews()
+    {
         $return = [];
         $i = 0;
         $select = $this->sql->query("SELECT review.id, review.reviewtype, review.review_url_base, review.review_url_info,
@@ -137,27 +138,33 @@ class Review
                 FROM review, review_head WHERE review.review_public != 0 AND review_head.review_id=review.id ORDER by `review`.`id` DESC LIMIT 20");
         $reviews = $select->fetchAll();
 
-        foreach($reviews as $review) {
-            if(empty($return['types'][$review['reviewtype']])) {
-                $type = $this->sql->query("SELECT * FROM review_type WHERE `id`=".$review['reviewtype'])->fetch();
-                $return['types'][$review['reviewtype']]['name'] = $type['name'];
-                $return['types'][$review['reviewtype']]['total'] = 1;
-            } else {
-                $return['types'][$review['reviewtype']]['total']++;
+        if (!empty($reviews)) {
+            $return['error'] = 200;
+            foreach ($reviews as $review) {
+                if (empty($return['types'][$review['reviewtype']])) {
+                    $type = $this->sql->query("SELECT * FROM review_type WHERE `id`=" . $review['reviewtype'])->fetch();
+                    $return['types'][$review['reviewtype']]['name'] = $type['name'];
+                    $return['types'][$review['reviewtype']]['total'] = 1;
+                } else {
+                    $return['types'][$review['reviewtype']]['total']++;
+                }
+                $return['items'][$i]['id'] = $review['id'];
+                $return['items'][$i]['type'] = $review['reviewtype'];
+                $return['items'][$i]['urlbase'] = $review['review_url_base'];
+                $return['items'][$i]['urlinfo'] = $review['review_url_info'];
+                $return['items'][$i]['title'] = $review['title'];
+                $return['items'][$i]['description'] = $review['description'];
+                $return['items'][$i]['backpicture'] = $review['backpicture'];
+                $return['items'][$i]['backtype'] = $review['backtype'];
+                $return['items'][$i]['logo'] = $review['logo'];
+                $return['items'][$i]['logotype'] = $review['logotype'];
+                $i++;
             }
-
-            $return['items'][$i]['id'] = $review['id'];
-            $return['items'][$i]['type'] = $review['reviewtype'];
-            $return['items'][$i]['urlbase'] = $review['review_url_base'];
-            $return['items'][$i]['urlinfo'] = $review['review_url_info'];
-            $return['items'][$i]['title'] = $review['title'];
-            $return['items'][$i]['description'] = $review['description'];
-            $return['items'][$i]['backpicture'] = $review['backpicture'];
-            $return['items'][$i]['backtype'] = $review['backtype'];
-            $return['items'][$i]['logo'] = $review['logo'];
-            $return['items'][$i]['logotype'] = $review['logotype'];
-            $i++;
+        } else {
+            $return['error'] = 404;
         }
+
+
         return $return;
     }
 
@@ -179,7 +186,11 @@ class Review
             }
         } else {
             $reviews = $this->allReviews();
-            include_once "./assets/pages/review/all.php";
+            if($reviews['error'] == 200) {
+                include_once "./assets/pages/review/all.php";
+            } else {
+                include_once "./assets/pages/review/none.php";
+            }
         }
     }
 }
