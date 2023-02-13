@@ -11,6 +11,7 @@
         {
             $this->sql = $sql;
             
+            if(empty($_SESSION['user'])) header('location: /login?returnto=/admin/');
             $roles = $this->sql->query("SELECT * FROM ROLES WHERE `user_id`=".$_SESSION['user']['id'])->fetch();
             $this->roles['helper'] = $roles['helper'];
             $this->roles['moderator'] = $roles['moderator'];

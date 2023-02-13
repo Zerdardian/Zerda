@@ -91,7 +91,11 @@ class Login extends Form
                 
                 $update = $this->sql->prepare('UPDATE `user` SET `latestlogin`=? WHERE `id`='.$user['id']);
                 $update->execute([$date]);
-                header('location: /user/');
+                if(!empty($_GET['returnto'])) {
+                    header('location: '.$_GET['returnto']);
+                } else {
+                    header('location: /user/');
+                }
             }
         }
     }
