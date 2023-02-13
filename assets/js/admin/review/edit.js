@@ -3,7 +3,7 @@ $(document).ready(function () {
         $("#settingsmenu").toggleClass('hidden');
     })
 
-    $('.text').change(function() {
+    $("input[type='text']").change(function() {
         var id = $('.reviewedit').attr('data-reviewid');
         var name = $(this).attr('name');
         var type = $(this).attr('data-type');
@@ -12,17 +12,43 @@ $(document).ready(function () {
         var data = {
             'id':id,
             'name':name,
+            'type':type,
             'value':value
         }
+        $.ajax({
+            type: "POST",
+            url: "/ajax/admin/review/edit?type=block",
+            data: data,
+            success: function (response) {
+                console.log(response)
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
+    });
 
-        console.log(data);
-        // $.ajax({
-        //     type: "POST",
-        //     url: "/ajax/admin/edit/",
-        //     data: data,
-        //     success: function (response) {
-                
-        //     }
-        // });
-    })
+    $('.platformclick').click(function() {
+        var id = $(this).attr('data-reviewid');
+        var platform = $(this).attr('data-platformid');
+        var type = $(this).attr('data-type');
+
+        var data = {
+            'id':id,
+            'platform':platform,
+            'type':type
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/ajax/admin/review/edit?type=platform",
+            data: data,
+        }).done(function(response) {
+            console.log(response);
+        }).fail(function(jqXHR, textStatus, errorMessage) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorMessage);
+        });
+    });
 })

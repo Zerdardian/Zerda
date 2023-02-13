@@ -119,10 +119,25 @@
                         include_once "./assets/pages/admin/review/create.php";
                         break;
                     case 'edit':
+                        $reviewid = $_SESSION['page'][4];
                         $select = $this->sql->query("SELECT review.id, review.reviewtype, review.review_url_base, review.review_url_info, review.review_public, 
                         review_head.title, review_head.description, review_head.backpicture, review_head.backtype, review_head.logo, review_head.logotype,
-                        review_end.verdict, review_end.grade FROM review, review_head, review_end WHERE review.review_base_id='".$_SESSION['page'][4]."' AND review_head.review_id=review.id AND review_end.review_id=review.id");
+                        review_end.verdict, review_end.grade FROM review, review_head, review_end WHERE review.review_base_id='$reviewid' AND review_head.review_id=review.id AND review_end.review_id=review.id");
                         $review = $select->fetch();
+                        if(!empty($_GET['type']) && $_GET['type'] == 'block') {
+                            if(!empty($_GET['info']) && $_GET['info'] == 'base') {
+                                $create = $this->sql->prepare("INSERT INTO review_content (`review_id`) VALUES (?)");
+                                $create->execute([$review['id']]);
+                                header('location: /admin/review/edit/'.$reviewid."/");
+                            }
+                        }
+
+                        if(!empty($_GET['removeblock'])) {
+                            $this->sql->prepare("DELETE FROM `review_content` WHERE `review_id`='".$review['id']."' AND `id`=".$_GET['removeblock'])->execute();
+                            header('location: /admin/review/edit/'.$reviewid."/");
+                        }
+
+                        $reviews = $this->reviewInfo($review['id']);
                         $platforms = $this->getPlatforms();
                         include_once "./assets/pages/admin/review/edit.php";
                         break;
@@ -130,8 +145,56 @@
             }
         }
 
+        protected function reviewInfo($review_id) {
+            $return['content']['basis'] = [];
+            $return['content']['platform'] = [];
+            $return['platform'] = [];
+            $return['platforms'] = [];
+            $return['links'] = [];
+
+            $select = $this->sql->query("SELECT * FROM `review_content` WHERE `review_id`=$review_id")->fetchall();
+            $i = 0;
+            foreach ($select as $content) {
+                if (empty($content['platform'])) {
+                    $return['content']['basis'][$i]['id'] = $content['id'];
+                    $return['content']['basis'][$i]['review_id'] = $content['review_id'];
+                    $return['content']['basis'][$i]['title'] = $content['title'];
+                    $return['content']['basis'][$i]['description'] = $content['description'];
+                    $return['content']['basis'][$i]['content'] = $content['content'];
+                    $return['content']['basis'][$i]['contentalt'] = $content['contentalt'];
+                    $return['content']['basis'][$i]['contenttype'] = $content['contenttype'];
+                    $i++;
+                } else {
+                    $return['content']['platform'][$content['platform']]['id'] = $content['id'];
+                    $return['content']['platform'][$content['platform']]['review_id'] = $content['review_id'];
+                    $return['content']['platform'][$content['platform']]['title'] = $content['title'];
+                    $return['content']['platform'][$content['platform']]['description'] = $content['description'];
+                    $return['content']['platform'][$content['platform']]['content'] = $content['content'];
+                    $return['content']['platform'][$content['platform']]['contentalt'] = $content['contentalt'];
+                    $return['content']['platform'][$content['platform']]['contenttype'] = $content['contenttype'];
+                    $return['content']['platform'][$content['platform']]['verdict'] = $content['platform_verdict'];
+                    $return['content']['platform'][$content['platform']]['grade'] = $content['platform_grade'];
+                }
+            }
+
+            $select = $this->sql->query("SELECT youtube, twitter, twitch, reddit, instagram, patreon FROM review_links WHERE `review_id`=$review_id")->fetch();
+            foreach ($select as $key => $value) {
+                if (!empty($value)) {
+                    $return['links'][$key] = $value;
+                }
+            }
+
+            $select = $this->sql->query("SELECT * FROM `review_platform`")->fetchAll();
+            foreach($select as $data) {
+                $return['platforms'][$data['id']]['id'] = $data['id'];
+                $return['platforms'][$data['id']]['name'] = $data['name'];
+                $return['platforms'][$data['id']]['description'] = $data['description'];
+            }
+
+            return $return;
+        }
+
         // Blog
 
         // User
     }
-?>

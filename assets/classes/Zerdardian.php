@@ -101,6 +101,12 @@ class Zerdardian
     public function setPage()
     {
         if (!empty($this->getdata[1]) && $this->getdata[1] == 'ajax') {
+            // header('Content-Type: application/json; charset=utf-8');
+            if(file_exists(('./assets'.$this->location))) {
+                include_once './assets'.$this->location;
+            } else {
+                echo 'file not found';
+            }
         } else
         if (!empty($this->getdata[1]) && $this->getdata[1] == 'api') {
         } else {
@@ -127,7 +133,7 @@ class Zerdardian
                     }
                 }
                 include_once "./assets/include/footer.php";
-            } 
+            }
         }
     }
 
