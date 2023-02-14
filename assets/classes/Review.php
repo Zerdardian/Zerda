@@ -125,11 +125,11 @@ class Review
         return $return;
     }
 
-    protected function allReviews()
+    public function allReviews()
     {
         $return = [];
         $i = 0;
-        $select = $this->sql->query("SELECT review.id, review.reviewtype, review.review_url_base, review.review_url_info,
+        $select = $this->sql->query("SELECT review.id, review.review_base_id, review.reviewtype, review.review_url_base, review.review_url_info,
                 review_head.title, review_head.description, review_head.backpicture, review_head.backtype, review_head.logo, review_head.logotype
                 FROM review, review_head WHERE review.review_public != 0 AND review_head.review_id=review.id ORDER by `review`.`id` DESC LIMIT 20");
         $reviews = $select->fetchAll();
@@ -145,6 +145,7 @@ class Review
                     $return['types'][$review['reviewtype']]['total']++;
                 }
                 $return['items'][$i]['id'] = $review['id'];
+                $return['items'][$i]['baseid'] = $review['review_base_id'];
                 $return['items'][$i]['type'] = $review['reviewtype'];
                 $return['items'][$i]['urlbase'] = $review['review_url_base'];
                 $return['items'][$i]['urlinfo'] = $review['review_url_info'];

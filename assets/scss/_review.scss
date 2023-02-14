@@ -9,6 +9,17 @@ div.review {
 
             background-color: grey;
             border-radius: 20px;
+            margin-bottom: 10px;
+            transition: 0.3s;
+
+            &:hover {
+                transition: 1s;
+                height: 400px;
+                div.texts {
+                    background-color: black;
+                    border-radius: 20px;
+                }
+            }
 
             a {
                 color: white;
@@ -28,12 +39,15 @@ div.review {
                         background-repeat: no-repeat;
                         background-position: 0%;
                         background-size: 100%;
+                        border-radius: 20px;
                     }
 
                     div.texts {
                         position: absolute;
                         top: 0;
                         left: 0;
+                        width: 50%;
+                        height: 100%;
 
                         padding-left: 30px;
                         padding-top: 10px;

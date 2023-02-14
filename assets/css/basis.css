@@ -206,6 +206,16 @@ html div.main div.review.all div.latestreview, body div.main div.review.all div.
   margin-top: 10px;
   background-color: grey;
   border-radius: 20px;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+html div.main div.review.all div.latestreview:hover, body div.main div.review.all div.latestreview:hover {
+  transition: 1s;
+  height: 400px;
+}
+html div.main div.review.all div.latestreview:hover div.texts, body div.main div.review.all div.latestreview:hover div.texts {
+  background-color: black;
+  border-radius: 20px;
 }
 html div.main div.review.all div.latestreview a, body div.main div.review.all div.latestreview a {
   color: white;
@@ -223,11 +233,14 @@ html div.main div.review.all div.latestreview a div.review div.background, body 
   background-repeat: no-repeat;
   background-position: 0%;
   background-size: 100%;
+  border-radius: 20px;
 }
 html div.main div.review.all div.latestreview a div.review div.texts, body div.main div.review.all div.latestreview a div.review div.texts {
   position: absolute;
   top: 0;
   left: 0;
+  width: 50%;
+  height: 100%;
   padding-left: 30px;
   padding-top: 10px;
 }

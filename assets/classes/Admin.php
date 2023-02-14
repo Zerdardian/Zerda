@@ -146,6 +146,8 @@
                         include_once "./assets/pages/admin/review/edit.php";
                         break;
                 }
+            } else {
+                include_once "./assets/pages/admin/review/all.php";
             }
         }
 
