@@ -1,0 +1,15 @@
+@mixin flex-grid-items($cols) {
+    display: flex;
+    flex-wrap: wrap;
+  
+    > * {
+      $item-width: calc(100% / $cols);
+      width: $item-width;
+      box-sizing: border-box;
+    }
+  }
+
+
+div#adminpages {
+    @import "adminreview";
+}

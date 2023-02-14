@@ -36,7 +36,6 @@ html,body {
 
         @import "user";
         @import "review";
-        @import "adminreview";
     }
 
     button, input[type=button], input[type=submit] {
@@ -62,6 +61,11 @@ html,body {
 
 textarea {
   resize: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .hidden {

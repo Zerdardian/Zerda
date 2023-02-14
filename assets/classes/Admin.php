@@ -203,6 +203,46 @@
             return $return;
         }
 
+        public function allReviews()
+    {
+        $return = [];
+        $i = 0;
+        $select = $this->sql->query("SELECT review.id, review.review_base_id, review.reviewtype, review.review_url_base, review.review_url_info,
+                review_head.title, review_head.description, review_head.backpicture, review_head.backtype, review_head.logo, review_head.logotype
+                FROM review, review_head WHERE review_head.review_id=review.id ORDER by `review`.`id` DESC LIMIT 20");
+        $reviews = $select->fetchAll();
+
+        if (!empty($reviews)) {
+            $return['error'] = 200;
+            foreach ($reviews as $review) {
+                if (empty($return['types'][$review['reviewtype']])) {
+                    $type = $this->sql->query("SELECT * FROM review_type WHERE `id`=" . $review['reviewtype'])->fetch();
+                    $return['types'][$review['reviewtype']]['name'] = $type['name'];
+                    $return['types'][$review['reviewtype']]['total'] = 1;
+                } else {
+                    $return['types'][$review['reviewtype']]['total']++;
+                }
+                $return['items'][$i]['id'] = $review['id'];
+                $return['items'][$i]['baseid'] = $review['review_base_id'];
+                $return['items'][$i]['type'] = $review['reviewtype'];
+                $return['items'][$i]['urlbase'] = $review['review_url_base'];
+                $return['items'][$i]['urlinfo'] = $review['review_url_info'];
+                $return['items'][$i]['title'] = $review['title'];
+                $return['items'][$i]['description'] = $review['description'];
+                $return['items'][$i]['backpicture'] = $review['backpicture'];
+                $return['items'][$i]['backtype'] = $review['backtype'];
+                $return['items'][$i]['logo'] = $review['logo'];
+                $return['items'][$i]['logotype'] = $review['logotype'];
+                $i++;
+            }
+        } else {
+            $return['error'] = 404;
+        }
+
+
+        return $return;
+    }
+
         // Blog
 
         // User

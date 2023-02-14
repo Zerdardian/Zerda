@@ -125,7 +125,7 @@ class Review
         return $return;
     }
 
-    public function allReviews()
+    protected function allReviews()
     {
         $return = [];
         $i = 0;
