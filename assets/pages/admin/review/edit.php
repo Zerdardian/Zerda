@@ -16,13 +16,24 @@
                             </div>
                         </div>
                         <div class="public">
-                            <div class="checkbox">
-                                <input type="checkbox" name="review_public" id="review_public" data-type="public" data-reviewid="<?= $review['id'] ?>" <?php if ($review['review_public'] == true) echo 'checked'; ?>>
+                        <?php if ($review['review_public'] == false) {
+                            ?>
+                            <div class="enable">
+                                <a href="/admin/review/edit/<?=$_SESSION['page'][4]?>/?enable=true">
+                                    <button class="enable">Publish</button>
+                                </a>
                             </div>
-                            <div class="text">
-                                <?php if ($review['review_public'] == true) echo 'Hij is al online voor andere gebruikers!';
-                                else echo "Online zetten voor andere gebruikers? Er kunnen live edits voor andere gebruikers worden gedaan." ?>
+                            <?php
+                        } else {
+                            ?>
+                            <div class="disable">
+                                <a href="/admin/review/disable/<?=$_SESSION['page'][4]?>">
+                                    <button>Disable</button>
+                                </a>
                             </div>
+                            <?php
+                        }
+                        ?>
                         </div>
                     </div>
                 </div>

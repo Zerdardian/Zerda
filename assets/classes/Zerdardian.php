@@ -64,6 +64,7 @@ class Zerdardian
             }
 
             $this->url .= "/";
+            $_SESSION['url'] = $this->url;
             $this->location .= ".php";
         }
 

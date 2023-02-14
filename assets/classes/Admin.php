@@ -135,6 +135,10 @@
                                 header('location: /admin/review/edit/'.$reviewid."/");
                             }
                         }
+                        if(!empty($_GET['enable']) && $_GET['enable'] == true) {
+                            $this->sql->prepare("UPDATE `review` SET `review_public`=true WHERE `review_base_id`='$reviewid'")->execute();
+                            header('location: /admin/review/edit/'.$reviewid.'/');
+                        }
 
                         if(!empty($_GET['removeblock'])) {
                             $this->sql->prepare("DELETE FROM `review_content` WHERE `review_id`='".$review['id']."' AND `id`=".$_GET['removeblock'])->execute();
@@ -144,6 +148,24 @@
                         $reviews = $this->reviewInfo($review['id']);
                         $platforms = $this->getPlatforms();
                         include_once "./assets/pages/admin/review/edit.php";
+                        break;
+                    case 'stats':
+                        break;
+                    case 'disable':
+                        $reviewid = $_SESSION['page'][4];
+                        $select = $this->sql->query("SELECT review.id, review.reviewtype, review.review_url_base, review.review_url_info, review.review_public, 
+                        review_head.title, review_head.description, review_head.backpicture, review_head.backtype, review_head.logo, review_head.logotype,
+                        review_end.verdict, review_end.grade FROM review, review_head, review_end WHERE review.review_base_id='$reviewid' AND review.review_public != 0 AND review_head.review_id=review.id AND review_end.review_id=review.id");
+                        $review = $select->fetch();
+                        if(!empty($_GET['disable']) && $_GET['disable'] == true) {
+                            $this->sql->prepare("UPDATE `review` SET `review_public`=false WHERE `review_base_id`='$reviewid'")->execute();
+                            header('location: /admin/review/');
+                        }
+                        if(!empty($review)) {
+                            include_once "./assets/pages/admin/review/disable.php";
+                        } else {
+                            header('location: /admin/review/');
+                        }
                         break;
                 }
             } else {
@@ -207,7 +229,7 @@
     {
         $return = [];
         $i = 0;
-        $select = $this->sql->query("SELECT review.id, review.review_base_id, review.reviewtype, review.review_url_base, review.review_url_info,
+        $select = $this->sql->query("SELECT review.id, review.review_base_id, review.reviewtype, review.review_url_base, review.review_url_info, review.review_public,
                 review_head.title, review_head.description, review_head.backpicture, review_head.backtype, review_head.logo, review_head.logotype
                 FROM review, review_head WHERE review_head.review_id=review.id ORDER by `review`.`id` DESC LIMIT 20");
         $reviews = $select->fetchAll();
@@ -215,13 +237,6 @@
         if (!empty($reviews)) {
             $return['error'] = 200;
             foreach ($reviews as $review) {
-                if (empty($return['types'][$review['reviewtype']])) {
-                    $type = $this->sql->query("SELECT * FROM review_type WHERE `id`=" . $review['reviewtype'])->fetch();
-                    $return['types'][$review['reviewtype']]['name'] = $type['name'];
-                    $return['types'][$review['reviewtype']]['total'] = 1;
-                } else {
-                    $return['types'][$review['reviewtype']]['total']++;
-                }
                 $return['items'][$i]['id'] = $review['id'];
                 $return['items'][$i]['baseid'] = $review['review_base_id'];
                 $return['items'][$i]['type'] = $review['reviewtype'];
@@ -233,6 +248,7 @@
                 $return['items'][$i]['backtype'] = $review['backtype'];
                 $return['items'][$i]['logo'] = $review['logo'];
                 $return['items'][$i]['logotype'] = $review['logotype'];
+                $return['items'][$i]['public'] = $review['review_public'];
                 $i++;
             }
         } else {
