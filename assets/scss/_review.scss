@@ -24,6 +24,10 @@ div.review {
                         height: 100%;
 
                         position: relative;
+
+                        background-repeat: no-repeat;
+                        background-position: 0%;
+                        background-size: 100%;
                     }
 
                     div.texts {
@@ -133,7 +137,8 @@ div.review {
                 }
 
                 background-color: grey;
-                padding-left: 10px;
+                padding-left: 20px;
+                padding-top: 5px;
                 padding-right: 10px;
                 border-radius: 20px;
 
@@ -153,6 +158,10 @@ div.review {
                 height: 250px;
 
                 background-color: lightblue;
+
+                background-repeat: no-repeat;
+                background-position: 0%;
+                background-size: 100%;
             }
         }
 

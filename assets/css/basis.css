@@ -220,6 +220,9 @@ html div.main div.review.all div.latestreview a div.review div.background, body 
   width: 100%;
   height: 100%;
   position: relative;
+  background-repeat: no-repeat;
+  background-position: 0%;
+  background-size: 100%;
 }
 html div.main div.review.all div.latestreview a div.review div.texts, body div.main div.review.all div.latestreview a div.review div.texts {
   position: absolute;
@@ -302,7 +305,8 @@ html div.main div.review.single div.head div.texts, body div.main div.review.sin
   min-height: 100px;
   transition: 0.5s;
   background-color: grey;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding-top: 5px;
   padding-right: 10px;
   border-radius: 20px;
 }
@@ -322,6 +326,9 @@ html div.main div.review.single div.head div.background, body div.main div.revie
   width: 100%;
   height: 250px;
   background-color: lightblue;
+  background-repeat: no-repeat;
+  background-position: 0%;
+  background-size: 100%;
 }
 html div.main div.review.single div.maincontent, body div.main div.review.single div.maincontent {
   margin-top: 50px;

@@ -8,7 +8,10 @@ $link = $base['links'];
 <div class="review single">
     <div class="head">
         <div class="content">
-            <div class="background">
+            <div class="background" <?php if(!empty($head['backpicture']) && $head['backpicturetype'] == 1) {
+                    ?>style="background-image: url('/assets/images/review/<?=$head['backpicture']?>')"<?php
+                    }
+                    ?>>
                 <?php
                 if (!empty($head['logo'])) {
                     $logo = "/assets/";
