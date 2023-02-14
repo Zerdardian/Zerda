@@ -124,6 +124,10 @@
                         review_head.title, review_head.description, review_head.backpicture, review_head.backtype, review_head.logo, review_head.logotype,
                         review_end.verdict, review_end.grade FROM review, review_head, review_end WHERE review.review_base_id='$reviewid' AND review_head.review_id=review.id AND review_end.review_id=review.id");
                         $review = $select->fetch();
+                        if(empty($review)) {
+                            include_once "./assets/pages/admin/404.php"; 
+                            return;
+                        } 
                         if(!empty($_GET['type']) && $_GET['type'] == 'block') {
                             if(!empty($_GET['info']) && $_GET['info'] == 'base') {
                                 $create = $this->sql->prepare("INSERT INTO review_content (`review_id`) VALUES (?)");
@@ -146,6 +150,7 @@
         }
 
         protected function reviewInfo($review_id) {
+            if(empty($review_id)) return null;
             $return['content']['basis'] = [];
             $return['content']['platform'] = [];
             $return['platform'] = [];
@@ -166,6 +171,7 @@
                     $i++;
                 } else {
                     $return['content']['platform'][$content['platform']]['id'] = $content['id'];
+                    $return['content']['platform'][$content['platform']]['platform'] = $content['platform'];
                     $return['content']['platform'][$content['platform']]['review_id'] = $content['review_id'];
                     $return['content']['platform'][$content['platform']]['title'] = $content['title'];
                     $return['content']['platform'][$content['platform']]['description'] = $content['description'];
@@ -189,6 +195,7 @@
                 $return['platforms'][$data['id']]['id'] = $data['id'];
                 $return['platforms'][$data['id']]['name'] = $data['name'];
                 $return['platforms'][$data['id']]['description'] = $data['description'];
+                $return['platforms'][$data['id']]['logo'] = $data['logo'];
             }
 
             return $return;

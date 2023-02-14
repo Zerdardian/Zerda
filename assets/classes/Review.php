@@ -69,6 +69,7 @@ class Review
         $platforms = $this->sql->query("SELECT * FROM review_platform")->fetchAll();
         foreach ($platforms as $platform) {
             $return['platform'][$platform['id']]['name'] = $platform['name'];
+            $return['platform'][$platform['id']]['logo'] = $platform['logo'];
         }
         $post = $select->fetch();
 

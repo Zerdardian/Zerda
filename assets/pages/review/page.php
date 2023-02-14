@@ -22,7 +22,7 @@ $link = $base['links'];
             </div>
             <div class="texts">
                 <div class="title"><?= $head['title'] ?></div>
-                <div class="description"><?= $head['description'] ?></div>
+                <div class="description"><?= nl2br($head['description']) ?></div>
             </div>
         </div>
     </div>
@@ -31,14 +31,14 @@ $link = $base['links'];
             <?php
             if (!empty($content['basis'])) {
                 foreach ($content['basis'] as $item) { ?>
-                    <div class="content reviewcontent basiscontent" data-id=<?= $item['id'] ?> data-review_id=<?= $item['review_id'] ?>>
+                    <div class="content reviewcontent basiscontent">
                         <div class="maincontent">
                             <div class="text">
                                 <div class="title">
                                     <?= $item['title'] ?>
                                 </div>
                                 <div class="description">
-                                    <?= $item['description'] ?>
+                                    <?= nl2br($item['description']) ?>
                                 </div>
                             </div>
                             <?php
@@ -48,7 +48,7 @@ $link = $base['links'];
                             ?>
                                         <div class="image">
                                             <div class="picture">
-                                                <img src="<?= $item['content'] ?>" alt="<?= $item['contentalt'] ?>">
+                                                <img src="/assets/images/review/<?= $item['content'] ?>" alt="<?= $item['contentalt'] ?>">
                                             </div>
                                             <div class="alt"><?= $item['contentalt'] ?></div>
                                         </div>
@@ -89,7 +89,7 @@ $link = $base['links'];
                                     <?= $item['title'] ?>
                                 </div>
                                 <div class="description">
-                                    <?= $item['description'] ?>
+                                    <?= nl2br($item['description']) ?>
                                 </div>
                             </div>
                             <?php
@@ -98,7 +98,7 @@ $link = $base['links'];
                                     case 1: ?>
                                         <div class="image">
                                             <div class="picture">
-                                                <img src="<?= $item['content'] ?>" alt="<?= $item['contentalt'] ?>">
+                                                <img src="/assets/images/review/<?= $item['content'] ?>" alt="<?= $item['contentalt'] ?>">
                                             </div>
                                             <div class="alt"><?= $item['contentalt'] ?></div>
                                         </div>

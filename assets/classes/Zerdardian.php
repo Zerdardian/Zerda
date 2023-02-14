@@ -101,11 +101,15 @@ class Zerdardian
     public function setPage()
     {
         if (!empty($this->getdata[1]) && $this->getdata[1] == 'ajax') {
-            // header('Content-Type: application/json; charset=utf-8');
+            header('Content-Type: application/json; charset=utf-8');
             if(file_exists(('./assets'.$this->location))) {
                 include_once './assets'.$this->location;
             } else {
-                echo 'file not found';
+                $return['error'] = 404;
+                $return['type'] = 'unknown';
+                $return['message'] = "File unknown, please try again later!";
+
+                return $return;
             }
         } else
         if (!empty($this->getdata[1]) && $this->getdata[1] == 'api') {

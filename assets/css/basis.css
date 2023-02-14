@@ -326,6 +326,7 @@ html div.main div.review.single div.head div.background, body div.main div.revie
 html div.main div.review.single div.maincontent, body div.main div.review.single div.maincontent {
   margin-top: 50px;
   font-size: 20px;
+  min-height: 170px;
 }
 html div.main div.review.single div.maincontent div.basiscontent div.content, body div.main div.review.single div.maincontent div.basiscontent div.content {
   width: 100%;
@@ -590,10 +591,32 @@ html div.main div.admin.review.reviewedit div.settings div#settingsmenu div.insi
   padding-left: 20px;
   padding-top: 10px;
 }
+html div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside div.content div.url div.input input[type=text], body div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside div.content div.url div.input input[type=text] {
+  width: 250px;
+}
+html div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside div.content div.public, body div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside div.content div.public {
+  display: flex;
+  flex-wrap: wrap;
+}
+html div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside div.content div.public > *, body div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside div.content div.public > * {
+  width: 50%;
+  box-sizing: border-box;
+}
+html div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside div.content div.public div.checkbox, body div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside div.content div.public div.checkbox {
+  width: 5%;
+}
+html div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside div.content div.public div.text, body div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside div.content div.public div.text {
+  width: 95%;
+}
+html div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside div.content div.public input[type=checkbox], body div.main div.admin.review.reviewedit div.settings div#settingsmenu div.inside div.content div.public input[type=checkbox] {
+  width: 50px;
+  height: 50px;
+}
 html div.main div.admin.review.reviewedit div.head, body div.main div.admin.review.reviewedit div.head {
   width: calc(100% + 200px);
   height: 250px;
   margin-left: -100px;
+  margin-bottom: 100px;
   border-bottom: 1px solid black;
   position: relative;
 }
@@ -602,11 +625,114 @@ html div.main div.admin.review.reviewedit div.head div.background, body div.main
   height: 100%;
   background-color: rgb(69, 59, 59);
   position: relative;
+  background-repeat: no-repeat;
+  background-position: 0%;
+  background-size: 100%;
 }
 html div.main div.admin.review.reviewedit div.head div.texts, body div.main div.admin.review.reviewedit div.head div.texts {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: -40px;
+  left: 40px;
+  width: 40%;
+  height: 150px;
+  background-color: grey;
+  border-radius: 20px;
+}
+html div.main div.admin.review.reviewedit div.head div.texts div.title, body div.main div.admin.review.reviewedit div.head div.texts div.title {
+  padding-left: 15px;
+  padding-top: 10px;
+  width: 100%;
+  height: 50px;
+}
+html div.main div.admin.review.reviewedit div.head div.texts div.description, body div.main div.admin.review.reviewedit div.head div.texts div.description {
+  padding-left: 10px;
+  padding-bottom: 10px;
+  min-height: 50px;
+}
+html div.main div.admin.review.reviewedit div.head div.texts input, body div.main div.admin.review.reviewedit div.head div.texts input {
+  width: 95%;
+  font-size: 35px;
+}
+html div.main div.admin.review.reviewedit div.head div.texts textarea, body div.main div.admin.review.reviewedit div.head div.texts textarea {
+  padding-left: 10px;
+  padding-top: 20px;
+}
+html div.main div.admin.review.reviewedit div.mainreview div.content, html div.main div.admin.review.reviewedit div.platforms div.content, body div.main div.admin.review.reviewedit div.mainreview div.content, body div.main div.admin.review.reviewedit div.platforms div.content {
+  display: flex;
+  flex-wrap: wrap;
+}
+html div.main div.admin.review.reviewedit div.mainreview div.content > *, html div.main div.admin.review.reviewedit div.platforms div.content > *, body div.main div.admin.review.reviewedit div.mainreview div.content > *, body div.main div.admin.review.reviewedit div.platforms div.content > * {
+  width: 50%;
+  box-sizing: border-box;
+}
+html div.main div.admin.review.reviewedit div.mainreview div.content div.texts, html div.main div.admin.review.reviewedit div.platforms div.content div.texts, body div.main div.admin.review.reviewedit div.mainreview div.content div.texts, body div.main div.admin.review.reviewedit div.platforms div.content div.texts {
+  width: 80%;
+}
+html div.main div.admin.review.reviewedit div.mainreview div.content div.image, html div.main div.admin.review.reviewedit div.platforms div.content div.image, body div.main div.admin.review.reviewedit div.mainreview div.content div.image, body div.main div.admin.review.reviewedit div.platforms div.content div.image {
+  width: 20%;
+}
+html div.main div.admin.review.reviewedit div.mainreview div.content div.image img, html div.main div.admin.review.reviewedit div.platforms div.content div.image img, body div.main div.admin.review.reviewedit div.mainreview div.content div.image img, body div.main div.admin.review.reviewedit div.platforms div.content div.image img {
+  width: 100%;
+  height: 100%;
+}
+html div.main div.admin.review.reviewedit div.mainreview div.texts div.title input, html div.main div.admin.review.reviewedit div.platforms div.texts div.title input, body div.main div.admin.review.reviewedit div.mainreview div.texts div.title input, body div.main div.admin.review.reviewedit div.platforms div.texts div.title input {
+  font-size: 30px;
+}
+html div.main div.admin.review.reviewedit div.mainreview div.texts div.description textarea, html div.main div.admin.review.reviewedit div.platforms div.texts div.description textarea, body div.main div.admin.review.reviewedit div.mainreview div.texts div.description textarea, body div.main div.admin.review.reviewedit div.platforms div.texts div.description textarea {
+  min-height: 150px;
+}
+html div.main div.admin.review.reviewedit div.platforms, body div.main div.admin.review.reviewedit div.platforms {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+html div.main div.admin.review.reviewedit div.platforms div.platformbuttons, body div.main div.admin.review.reviewedit div.platforms div.platformbuttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+html div.main div.admin.review.reviewedit div.platforms div.platformbuttons > *, body div.main div.admin.review.reviewedit div.platforms div.platformbuttons > * {
+  width: 20%;
+  box-sizing: border-box;
+}
+html div.main div.admin.review.reviewedit div.platforms div.platformbuttons button, body div.main div.admin.review.reviewedit div.platforms div.platformbuttons button {
+  margin-right: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+}
+html div.main div.admin.review.reviewedit div.platforms div.platformbuttons button > *, body div.main div.admin.review.reviewedit div.platforms div.platformbuttons button > * {
+  width: 50%;
+  box-sizing: border-box;
+}
+html div.main div.admin.review.reviewedit div.platforms div.platformbuttons button:hover, body div.main div.admin.review.reviewedit div.platforms div.platformbuttons button:hover {
+  width: 250px;
+  transition: 1s;
+}
+html div.main div.admin.review.reviewedit div.platforms div.platformbuttons button:hover div.name, body div.main div.admin.review.reviewedit div.platforms div.platformbuttons button:hover div.name {
+  transition: 1s;
+  width: 75%;
+}
+html div.main div.admin.review.reviewedit div.platforms div.platformbuttons button:hover div.image, body div.main div.admin.review.reviewedit div.platforms div.platformbuttons button:hover div.image {
+  transition: 1s;
+  width: 25%;
+}
+html div.main div.admin.review.reviewedit div.platforms div.platformbuttons button div.name, body div.main div.admin.review.reviewedit div.platforms div.platformbuttons button div.name {
+  width: 70%;
+  padding-top: 20px;
+  transition: 0.5s;
+}
+html div.main div.admin.review.reviewedit div.platforms div.platformbuttons button div.image, body div.main div.admin.review.reviewedit div.platforms div.platformbuttons button div.image {
+  width: 30%;
+  transition: 0.5s;
+}
+html div.main div.admin.review.reviewedit div.platforms div.platformbuttons button div.image img, body div.main div.admin.review.reviewedit div.platforms div.platformbuttons button div.image img {
+  width: 100%;
+  height: 100%;
+}
+html div.main div.admin.review.reviewedit div.platforms div.data div.platformreview, body div.main div.admin.review.reviewedit div.platforms div.data div.platformreview {
+  display: block;
+}
+html div.main div.admin.review.reviewedit div.platforms div.data div.platformreview.hidden, body div.main div.admin.review.reviewedit div.platforms div.data div.platformreview.hidden {
+  display: none;
 }
 html div.main div.admin.review.reviewedit div.footer div.content, body div.main div.admin.review.reviewedit div.footer div.content {
   display: flex;
@@ -621,10 +747,65 @@ html div.main div.admin.review.reviewedit div.footer div.content div.verdict, bo
 }
 html div.main div.admin.review.reviewedit div.footer div.content div.verdict textarea, body div.main div.admin.review.reviewedit div.footer div.content div.verdict textarea {
   width: 90%;
-  height: 250px;
+  min-height: 100px;
+  max-height: 125px;
 }
 html div.main div.admin.review.reviewedit div.footer div.content div.grade, body div.main div.admin.review.reviewedit div.footer div.content div.grade {
   width: 20%;
+}
+html div.main div.admin.review.reviewedit div.footer div.content div.grade div.number, body div.main div.admin.review.reviewedit div.footer div.content div.grade div.number {
+  width: 125px;
+  height: 125px;
+  background-color: red;
+  border-radius: 20px;
+}
+html div.main div.admin.review.reviewedit div.footer div.content div.grade div.number input, body div.main div.admin.review.reviewedit div.footer div.content div.grade div.number input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 40px;
+  color: white;
+  padding-left: 5px;
+}
+html div.main div.admin.review.reviewedit input, html div.main div.admin.review.reviewedit textarea, body div.main div.admin.review.reviewedit input, body div.main div.admin.review.reviewedit textarea {
+  width: 95%;
+  min-height: 50px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  font-family: "Open Sans", sans-serif;
+  padding: 0;
+}
+html div.main div.admin.review.reviewedit input:hover, html div.main div.admin.review.reviewedit textarea:hover, body div.main div.admin.review.reviewedit input:hover, body div.main div.admin.review.reviewedit textarea:hover {
+  border-bottom: 1px solid black;
+}
+html div.main div.admin.review.reviewedit textarea:hover, body div.main div.admin.review.reviewedit textarea:hover {
+  border: 1px solid black;
+}
+html div.main div.cropperarea, body div.main div.cropperarea {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+html div.main div.cropperarea.hidden, body div.main div.cropperarea.hidden {
+  display: none;
+}
+html div.main div.cropperarea div.maincropper, body div.main div.cropperarea div.maincropper {
+  width: 90%;
+  height: 100%;
+  background-color: white;
+  position: relative;
+  margin-left: 5%;
+}
+html div.main div.cropperarea div.maincropper div.content, body div.main div.cropperarea div.maincropper div.content {
+  width: 100%;
+  height: 100%;
+}
+html div.main div.cropperarea div.maincropper div.content div.image canvas#cropperimg, body div.main div.cropperarea div.maincropper div.content div.image canvas#cropperimg {
+  max-width: 100%;
 }
 html button, html input[type=button], html input[type=submit], body button, body input[type=button], body input[type=submit] {
   min-width: 125px;
@@ -652,3 +833,7 @@ html .row-2 > *, body .row-2 > * {
 textarea {
   resize: none;
 }
+
+.hidden {
+  display: none;
+}/*# sourceMappingURL=basis.css.map */
