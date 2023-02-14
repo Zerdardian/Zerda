@@ -109,28 +109,6 @@ $(document).ready(function () {
             console.log(errorMessage);
         });
     });
-    // $("input#review_public").change(function () {
-    //     var id = $(this).attr('data-reviewid');
-    //     var name = $(this).attr('name');
-    //     var type = $(this).attr('data-type');
-
-    //     var data = {
-    //         'id': id,
-    //         'name': name,
-    //         'type': type,
-    //     }
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "/ajax/admin/review/edit?type=block",
-    //         data: data
-    //     }).done(function (response) {
-    //         location.reload();
-    //     }).fail(function (jqXHR, textStatus, errorMessage) {
-    //         console.log(jqXHR);
-    //         console.log(textStatus);
-    //         console.log(errorMessage);
-    //     });
-    // })
     $("input[type=number]").change(function () {
         var id = $('.reviewedit').attr('data-reviewid');
         var name = $(this).attr('name');
