@@ -101,6 +101,16 @@ class Zerdardian
     public function setPage()
     {
         if (!empty($this->getdata[1]) && $this->getdata[1] == 'ajax') {
+            header('Content-Type: application/json; charset=utf-8');
+            if(file_exists(('./assets'.$this->location))) {
+                include_once './assets'.$this->location;
+            } else {
+                $return['error'] = 404;
+                $return['type'] = 'unknown';
+                $return['message'] = "File unknown, please try again later!";
+
+                return $return;
+            }
         } else
         if (!empty($this->getdata[1]) && $this->getdata[1] == 'api') {
         } else {
@@ -110,6 +120,8 @@ class Zerdardian
                     include_once "./assets/pages/user.php";
                 } else if (!empty($_SESSION['page'][1]) && $_SESSION['page'][1] == 'review') {
                     include_once "./assets/pages/review.php";
+                } else if (!empty($_SESSION['page'][1]) && $_SESSION['page'][1] == 'admin') {
+                    include_once "./assets/pages/admin.php";
                 } else {
                     if (empty($_GET)) {
                         include_once "./assets/pages/main.php";
@@ -125,7 +137,7 @@ class Zerdardian
                     }
                 }
                 include_once "./assets/include/footer.php";
-            } 
+            }
         }
     }
 

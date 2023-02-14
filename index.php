@@ -18,6 +18,7 @@
     $dotenv->load();
 
     $zerdardian = new Zerdardian;
+    $user = new User($zerdardian->returnSQL());
     $zerdardian->setPageData();
     $zerdardian->setPage();
 ?>
