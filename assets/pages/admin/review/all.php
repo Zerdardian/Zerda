@@ -1,26 +1,37 @@
 <?php
 $zerdardian = new Zerdardian;
-$review = new Review($zerdardian->returnSQL(), $zerdardian->returnUrl());
-$reviews = $review->allReviews();
+$admin = new Admin($zerdardian->returnSQL());
+$reviews = $admin->allReviews();
 ?>
 
 <div class="reviews allreviews allreviewsadmin">
     <?php
     foreach ($reviews['items'] as $data) {
     ?>
-        <a href="/admin/review/edit/<?= $data['baseid'] ?>/">
-            <div class="review">
-                <div class="background" <?php
-                                        if (!empty($data['backpicture']) && $data['backtype'] == 1) {
-                                        ?>style="background-image:url('/assets/images/review/<?= $data['backpicture'] ?>')" <?php
-                                                                                                        }
-                                                                                                            ?>></div>
-                <div class="texts">
-                    <div class="title"><?=$data['title']?></div>
-                    <div class="title"><?=$data['description']?></div>
+        <div class="review">
+            <div class="background" <?=$data['background']['link']?>></div>
+            <div class="texts">
+                <div class="title"><?= $data['title'] ?></div>
+                <div class="description"><?= $data['description'] ?></div>
+                <div class="buttons">
+                    <a href="/admin/review/edit/<?= $data['baseid'] ?>/">
+                        <button>Edit</button>
+                    </a>
+                    <a href="/admin/review/stats/<?= $data['baseid'] ?>/">
+                        <button>Stats</button>
+                    </a>
+                    <?php
+                    if ($data['public'] == 1) {
+                    ?>
+                        <a href="/admin/review/disable/<?= $data['baseid'] ?>/">
+                            <button>Unpublish</button>
+                        </a>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
-        </a>
+        </div>
 
     <?php
     }

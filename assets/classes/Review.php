@@ -80,6 +80,7 @@ class Review
                 $return['error'] = 200;
                 $return['base']['head']['title'] = $post['title'];
                 $return['base']['head']['description'] = $post['description'];
+                $return['base']['head']['background'] = $this->setBackground($post['backpicture'], $post['backtype']);
                 $return['base']['head']['backpicture'] = $post['backpicture'];
                 $return['base']['head']['backpicturetype'] = $post['backtype'];
                 $return['base']['head']['logo'] = $post['logo'];
@@ -125,7 +126,48 @@ class Review
         return $return;
     }
 
-    public function allReviews()
+    public function getLatest()
+    {
+        $return = [];
+        $select = $this->sql->query("SELECT review.id, review.review_base_id, review.reviewtype, review.review_url_base, review.review_url_info,
+                review_head.title, review_head.description, review_head.backpicture, review_head.backtype, review_head.logo, review_head.logotype
+                FROM review, review_head WHERE review.review_public != 0 AND review_head.review_id=review.id ORDER by `review`.`id` DESC");
+        $review = $select->fetch();
+        if (!empty($review)) {
+            $return['error'] = 200;
+            $return['title'] = $review['title'];
+            $return['description'] = $review['description'];
+            $return['background'] = $this->setBackground($review['backpicture'], $review['backtype']);
+            $return['logo'] = $review['logo'];
+            $return['logotype'] = $review['logotype'];
+            $return['urlbase'] = $review['review_url_base'];
+            $return['urlinfo'] = $review['review_url_info'];
+        } else {
+            $return['error'] = 404;
+        }
+
+        return $return;
+    }
+
+    protected function setBackground(string $image, int $type) {
+        switch($type) {
+            case 1:
+                $link = "/assets/images/review/".$image;
+                break;
+            default:
+                break;
+        }
+        if(!empty($link)) {
+            $return['error'] = 200;
+            $return['link'] = "style='background-image:url($link)'";
+        } else {
+            $return['error'] = 404;
+            $return['link'] = null;
+        }
+        return $return;
+    }
+
+    protected function allReviews()
     {
         $return = [];
         $i = 0;
@@ -151,8 +193,7 @@ class Review
                 $return['items'][$i]['urlinfo'] = $review['review_url_info'];
                 $return['items'][$i]['title'] = $review['title'];
                 $return['items'][$i]['description'] = $review['description'];
-                $return['items'][$i]['backpicture'] = $review['backpicture'];
-                $return['items'][$i]['backtype'] = $review['backtype'];
+                $return['items'][$i]['background'] = $this->setBackground($review['backpicture'], $review['backtype']);
                 $return['items'][$i]['logo'] = $review['logo'];
                 $return['items'][$i]['logotype'] = $review['logotype'];
                 $i++;
@@ -183,7 +224,7 @@ class Review
             }
         } else {
             $reviews = $this->allReviews();
-            if($reviews['error'] == 200) {
+            if ($reviews['error'] == 200) {
                 include_once "./assets/pages/review/all.php";
             } else {
                 include_once "./assets/pages/review/none.php";

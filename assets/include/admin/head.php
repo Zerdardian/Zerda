@@ -1,8 +1,24 @@
 <div id="adminpages">
     <div class="menu">
-        <a href="/admin/">Home</a>
-        <a href="/admin/blog/">Blog</a>
-        <a href="/admin/review/">Review</a>
-        <a href="/admin/users">Users</a>
+        <a href="/admin/">
+            <div class="item">
+                Home
+            </div>
+        </a>
+        <a href="/admin/review/">
+            <div class="item">
+                Reviews
+            </div>
+        </a>
+        <a href="/admin/blog/">
+            <div class="item">
+                Blog
+            </div>
+        </a>
+        <a href="/admin/user">
+            <div class="item">
+                Users
+            </div>
+        </a>
     </div>
     <div class="main">
