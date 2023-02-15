@@ -9,11 +9,7 @@ $reviews = $admin->allReviews();
     foreach ($reviews['items'] as $data) {
     ?>
         <div class="review">
-            <div class="background" <?php
-                                    if (!empty($data['backpicture']) && $data['backtype'] == 1) {
-                                    ?>style="background-image:url('/assets/images/review/<?= $data['backpicture'] ?>')" <?php
-                                                                                                    }
-                                                                                                        ?>></div>
+            <div class="background" <?=$data['background']['link']?>></div>
             <div class="texts">
                 <div class="title"><?= $data['title'] ?></div>
                 <div class="description"><?= $data['description'] ?></div>

@@ -168,8 +168,7 @@ $(document).ready(function () {
             processData: false,
         }).done(function (response) {
             if (response.error == 200) {
-                // location.reload();
-                console.log(response);
+                location.reload();
             }
         }).fail(function (jqXHR, textStatus, errorMessage) {
             console.log(jqXHR);

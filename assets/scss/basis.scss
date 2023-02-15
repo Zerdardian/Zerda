@@ -1,62 +1,77 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
-@mixin flex-grid-items($cols) {
-    display: flex;
-    flex-wrap: wrap;
-  
-    > * {
-      $item-width: calc(100% / $cols);
-      width: $item-width;
-      box-sizing: border-box;
+@import "mixins";
+
+html,
+body {
+  position: relative;
+
+  @include for-big-desktop-up() {
+    max-width: 1920px;
+    min-width: 1800px;
+  }
+
+  @include for-phone-only() {
+    max-width: 600px;
+  }
+
+  width: 100%;
+  height: 100vh;
+
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans',
+  sans-serif;
+
+  header,
+  footer {
+    width: 100%;
+    height: 125px;
+
+    background-color: rgb(159, 145, 145);
+  }
+
+  div.main {
+    min-height: 74.4vh;
+
+    @include for-big-desktop-up() {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+
+    @include for-phone-only() {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    padding-top: 10px;
+
+    @import "user";
+    @import "review";
+  }
+
+  button,
+  input[type=button],
+  input[type=submit] {
+    min-width: 125px;
+    min-height: 50px;
+
+    border-radius: 20px;
+    background-color: rgb(116, 116, 116);
+    color: white;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+
+    &:hover {
+      min-width: 175px;
+      min-height: 60px;
+      box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
     }
   }
 
-html,body {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-
-    margin: 0;
-    padding: 0;
-    font-family: 'Open Sans', sans-serif;
-
-    header, footer {
-        width: 100%;
-        height: 125px;
-
-        background-color: rgb(159, 145, 145);
-    }
-
-    div.main {
-        min-height: 74.4vh;
-
-        padding-left: 50px;
-        padding-right: 50px;
-        padding-top: 10px;
-
-        @import "user";
-        @import "review";
-    }
-
-    button, input[type=button], input[type=submit] {
-      min-width: 125px;
-      min-height: 50px;
-
-      border-radius: 20px;
-      background-color: rgb(116, 116, 116);
-      color: white;
-      box-shadow: 10px 10px rgba(0, 0, 0, 0.2);
-      transition: 0.5s;
-
-      &:hover {
-        min-width: 175px;
-        min-height: 60px;
-        box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
-      }
-    }
-    .row-2 {
-      @include flex-grid-items(2);
-    }
+  .row-2 {
+    @include flex-grid-items(2);
+  }
 }
 
 textarea {
@@ -70,4 +85,13 @@ a {
 
 .hidden {
   display: none;
+}
+
+.spoiler {
+  background-color: black;
+  color: black;
+
+  &:hover {
+    color: white;
+  }
 }

@@ -47,7 +47,7 @@ $pageinfo = $page->getPageInfo();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cropper/1.0.1/jquery-cropper.min.js" integrity="sha512-V8cSoC5qfk40d43a+VhrTEPf8G9dfWlEJgvLSiq2T2BmgGRmZzB8dGe7XAABQrWj3sEfrR5xjYICTY4eJr76QQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="/assets/css/basis.css">
     <?php
-        if(file_exists("./assets/css/".$_SESSION['page'][1].".css")) {
+        if(!empty($_SESSION['page'][1]) && file_exists("./assets/css/".$_SESSION['page'][1].".css")) {
             $file = "/assets/css/".$_SESSION['page'][1].".css";
             ?>
     <link rel="stylesheet" href=<?=$file?>>

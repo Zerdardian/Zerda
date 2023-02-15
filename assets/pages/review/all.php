@@ -6,11 +6,7 @@
         ?>
         <a href="/review/<?= $latest['urlbase'] ?>/<?= $latest['urlinfo'] ?>/">
             <div class="review">
-                <div class="background" <?php
-                                        if (!empty($latest['backpicture']) && $latest['backtype'] == 1) {
-                                        ?>style="background-image:url('/assets/images/review/<?= $latest['backpicture'] ?>')" <?php
-                                                                                                        }
-                                                                                                            ?>>
+                <div class="background" <?=$latest['background']['link']?>>
                     <div class="logo"></div>
                 </div>
                 <div class="texts">
@@ -28,11 +24,7 @@
             ?>
                     <a href="/review/<?= $review['urlbase'] ?>/<?= $review['urlinfo'] ?>">
                         <div class="review">
-                            <div class="background" <?php
-                                                    if (!empty($review['backpicture']) && $review['backtype'] == 1) {
-                                                    ?>style="background-image:url('/assets/images/review/<?= $review['backpicture'] ?>')" <?php
-                                                                                                        }
-                                                                                                            ?>></div>
+                            <div class="background" <?=$review['background']['link']?>></div>
                             <div class="texts">
                                 <div class="title">
                                     <?= $review['title'] ?>

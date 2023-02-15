@@ -124,6 +124,7 @@
                         review_head.title, review_head.description, review_head.backpicture, review_head.backtype, review_head.logo, review_head.logotype,
                         review_end.verdict, review_end.grade FROM review, review_head, review_end WHERE review.review_base_id='$reviewid' AND review_head.review_id=review.id AND review_end.review_id=review.id");
                         $review = $select->fetch();
+                        $background = $this->setReviewBackground($review['backpicture'], $review['backtype']);
                         if(empty($review)) {
                             include_once "./assets/pages/admin/404.php"; 
                             return;
@@ -244,8 +245,7 @@
                 $return['items'][$i]['urlinfo'] = $review['review_url_info'];
                 $return['items'][$i]['title'] = $review['title'];
                 $return['items'][$i]['description'] = $review['description'];
-                $return['items'][$i]['backpicture'] = $review['backpicture'];
-                $return['items'][$i]['backtype'] = $review['backtype'];
+                $return['items'][$i]['background'] = $this->setReviewBackground($review['backpicture'], $review['backtype']);
                 $return['items'][$i]['logo'] = $review['logo'];
                 $return['items'][$i]['logotype'] = $review['logotype'];
                 $return['items'][$i]['public'] = $review['review_public'];
@@ -256,6 +256,24 @@
         }
 
 
+        return $return;
+    }
+
+    protected function setReviewBackground(string $image, int $type) {
+        switch($type) {
+            case 1:
+                $link = "/assets/images/review/".$image;
+                break;
+            default:
+                break;
+        }
+        if(!empty($link)) {
+            $return['error'] = 200;
+            $return['link'] = "style='background-image:url($link)'";
+        } else {
+            $return['error'] = 404;
+            $return['link'] = null;
+        }
         return $return;
     }
 

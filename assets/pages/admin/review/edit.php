@@ -41,10 +41,7 @@
         </div>
         <div class="head">
             <label for="headerpng">
-                <div id="headbackground" class="background" <?php if(!empty($review['backpicture']) && $review['backtype'] == 1) {
-                    ?>style="background-image: url('/assets/images/review/<?=$review['backpicture']?>')"<?php
-                    }
-                    ?>></div>
+                <div id="headbackground" class="background" <?=$background['link']?>></div>
             </label>
             <div class="texts">
                 <div class="title">
