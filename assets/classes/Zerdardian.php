@@ -123,6 +123,8 @@ class Zerdardian
                     include_once "./assets/pages/review.php";
                 } else if (!empty($_SESSION['page'][1]) && $_SESSION['page'][1] == 'admin') {
                     include_once "./assets/pages/admin.php";
+                } else if (!empty($_SESSION['page'][1]) && $_SESSION['page'][1] == 'story') {
+                    include_once "./assets/pages/story.php";
                 } else {
                     if (empty($_GET)) {
                         include_once "./assets/pages/main.php";

@@ -101,6 +101,13 @@ $pageinfo = $page->getPageInfo();
                         }
                         ?>
                     </div>
+                    <div class="story item">
+                        <a href="/story/">
+                            <div class="storyitem">
+                                Story
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="user">
                     <?php
