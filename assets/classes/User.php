@@ -61,4 +61,16 @@
             }
             return $profilepicture;
         }
+
+        public function returnUser() {
+            $return = [];
+            if(!empty($this->id)) {
+                $return['id'] = $this->id;
+                $return['profilepicture'] = $this->getProfilePicture();
+                $return['username'] = $this->username;
+                $return['email'] = $this->email;
+            }
+
+            return $return;
+        }
     }

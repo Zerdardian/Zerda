@@ -23,6 +23,125 @@ body {
   font-family: 'Open Sans',
   sans-serif;
 
+  div.mainmenu#mainmenu {
+    div.mainmenubutton {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+
+      background-color: black;
+    }
+
+    &.active {
+      div.menu#menumain {
+        display: block;
+        height: 500px;
+      }
+    }
+
+    div.menu#menumain {
+      padding-top: 20px;
+      width: 20%;
+      height: 0;
+      transition: 1s;
+      display: none;
+
+      position: absolute;
+      z-index: 2;
+      top: 125px;
+      right: 0;
+
+      background-color: grey;
+
+      div.user {
+        div.user.item {
+          @include flex-grid-items(2);
+          div.profilepicture {
+            margin-left: 50px;
+            width: 75px;
+          }
+          div.text {
+            width: calc(100% - 175px);
+            margin-left: 25px;
+            text-align: left;
+          }
+        }
+        div.user.item div.profilepicture {
+          width: 75px;
+          height: 75px;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+
+      div.item, div.reviewitem {
+        width: 100%;
+        min-height: 50px;
+        text-align: center;
+        color: white;
+
+        &:hover {
+          margin-bottom: 20px;
+          font-weight: bold;
+        }
+        
+        div.text {
+          padding-top: 10px;
+        }
+      }
+
+      div.review {
+        &:hover {
+          div.current {
+            height: 125px;
+            margin-bottom: 20px;
+            transition: 1s;
+            opacity: 1;
+
+            div.text  {
+              position: absolute;
+              width: 100%;
+              height: 25px;
+
+              bottom: 0;
+              left: 0;
+              border-radius: 20px;
+              background-color: white;
+              color: black;
+              transition: 1s;
+              box-shadow: 0px 20px rgba(0, 0, 0, 0.4);
+            }
+          }
+        }
+
+        div.current {
+          position: relative;
+          width: 100%;
+          height: 0;
+          opacity: 0;
+          transition: 1s;
+
+          background-size: 100%;
+          border-radius: 20px;
+          
+
+          div.text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            transition: 1s;
+          }
+        }
+      }
+    }
+  }
+
   header,
   footer {
     width: 100%;
@@ -46,6 +165,7 @@ body {
 
     padding-top: 10px;
 
+    @import "index";
     @import "user";
     @import "review";
   }

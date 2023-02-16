@@ -1,0 +1,78 @@
+div.index.mainpage {
+    width: calc(100% + 100px);
+    margin-left: -50px;
+    div.maincontent {
+        div.content {
+            div.review {
+                width: 70%;
+                margin-left: 30%;
+                transition: 1s;
+
+                &:hover {
+                    margin-left: 28%;
+                    margin-right: 2%;
+                    transition: 1s;
+
+                    a div.content div.background {  
+                        transition: 1s;
+                        border-radius: 20px;
+                    }
+                }
+                a {
+                    div.content {
+                        position: relative;
+                        div.background {
+                            width: 100%;
+                            height: 250px;
+                            background-color: grey;
+
+                            background-position: 0%;
+                            background-repeat: no-repeat;
+                            background-size: 100%;
+                            transition: 2s;
+                            border-top-left-radius: 20px;
+                            border-bottom-left-radius: 20px;
+                        }
+                        div.texts {
+                            width: 100%;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+
+                            div.content {
+                                div.text {
+                                    width: 100%;
+                                    position: relative;
+
+                                    div.area {
+                                        position: absolute;
+                                        bottom: -20px;
+                                        left: -20px;
+
+                                        background-color: grey;
+
+                                        color: white;
+                                        width: 30%;
+                                        height: 100px;
+                                        border-radius: 20px;
+
+                                        div.title {
+                                            padding-left: 20px;
+                                            font-size: 30px;
+                                            font-weight: bold;
+                                        }
+
+                                        div.description {
+                                            padding-left: 20px;
+                                            padding-right: 20px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

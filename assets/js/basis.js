@@ -1,3 +1,4 @@
-$(document).ready(function () {
-    
+
+$("#mainmenubutton").on('click', function () {
+    $('#mainmenu').toggleClass('active');
 })
