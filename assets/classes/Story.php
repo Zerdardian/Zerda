@@ -6,5 +6,9 @@
         {
             $this->sql = $sql;
         }
+
+        public function getStory(string $storyname, int $chapter) {
+            
+        }
     }
 ?>
