@@ -77,13 +77,29 @@ class Zerdardian
     {
         $data = $this->sql->query("SELECT * FROM pagedata WHERE `page`='" . $this->page . "'")->fetch();
         if (empty($data)) {
+            $this->sql->prepare("INSERT INTO `pagedata` (`page`) VALUES (?)")->execute([$this->page]);
+
             $this->pagename = '`' . $this->page . '` | Zerdardian';
             $this->pagedescription = '' . $this->page . ' | Zerdardian';
             $this->pageimage = null;
         } else {
-            $this->pagename =  $data['pagename'] . ' | Zerdardian';
-            $this->pagedescription = $data['pagedescription'] . ' | Zerdardian';
-            $this->pageimage = $this->baseurl . 'assets/images/meta/' . $data['pageimage'];
+            if(!empty($data['pagename'])) {
+                $this->pagename =  $data['pagename'] . ' | Zerdardian';
+            } else {
+                $this->pagename = '`' . $this->page . '` | Zerdardian';
+            }
+
+            if(!empty($data['pagedescription'])) {
+                $this->pagedescription = $data['pagedescription'] . ' | Zerdardian';
+            } else {
+                $this->pagedescription = '' . $this->page . ' | Zerdardian';
+            }
+
+            if(!empty($data['pageimage'])) {
+                $this->pageimage = $this->baseurl . 'assets/images/meta/' . $data['pageimage'];
+            } else {
+                $this->pageimage = null;
+            }
         }
     }
 
