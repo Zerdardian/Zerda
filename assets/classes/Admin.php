@@ -5,6 +5,7 @@
         protected $access;
         protected $role;
         protected $review;
+        protected $story;
 
         // Basis
         function __construct($sql) 
@@ -277,7 +278,85 @@
         return $return;
     }
 
-        // Blog
 
-        // User
+    // Story
+    public function setStoryClass($story) {
+        $this->story = $story;
+    }
+
+    public function getStoryPage() {
+        if(!empty($_GET[3])) {
+            switch($_GET[3]) {
+                case 'edit':
+                    $story = $this->getStory($_GET[4]);
+                    include_once "./assets/pages/admin/story/edit.php";
+                    break;
+                default:
+                    $stories = $this->getAllStories();
+                    include_once "./assets/pages/admin/story/all.php";
+                    break;
+            }
+        }
+    }
+
+    public function getStory($storyid) {
+        
+    }
+
+    public function getAllStories() {
+       $return = [];
+            $select = $this->sql->query("SELECT story.id, story.story_id, story.chapter, story.storyname as name, story.chaptername, story.updated,
+                                                story_head.story_background as background, story_head.story_background_type as type, story_head.description 
+                                                FROM story, story_head WHERE story.id = story_head.story_id")->fetch();
+            if(!empty($select)) {
+                $id = $select['id'];
+                $storyinfo = $this->sql->query("SELECT * FROM story_main WHERE `story_id`='$id'")->fetchall();
+                $return['error'] = 200;
+                $return['base']['id'] = $select['id'];
+                $return['base']['story_id'] = $select['story_id'];
+                if(!empty($select['background'])) {
+                    $return['head']['background'] = $this->setStoryPicture($select['background'], $select['type']);
+                }
+                $return['head']['name'] = $select['name'];
+                $return['head']['chapter'] = $select['chaptername'];
+                $return['head']['description'] = $select['description'];
+                
+                $i = 0;
+                foreach($storyinfo as $data) {
+                    $return['main'][$i]['title'] = $data['title'];
+                    $return['main'][$i]['description'] = $data['description'];
+                    if(!empty($data['picture'])) {
+                        $return['head']['picture'] = $this->setStoryPicture($data['picture'], $data['picturetype']);
+                    }
+                    $i++;
+                }
+            } else {
+                $return['error'] = 404;
+
+            }
+
+            return $return; 
+    }
+
+        public function setStoryPicture(string $picture, int $type) {
+            $return = [];
+            $return['error'] = 404;
+
+            switch($type) {
+                case 1:
+                    $return['error'] = 200;
+                    $return['image'] = "./assets/images/review/".$picture;
+                    break;
+            }
+            return $return;
+        }
+
+        public function updateStoryDate(int $id) {
+            $date = date('d-m-Y H:i:s');
+
+            $this->sql->prepare("UPDATE `story` SET `updated`=? WHERE `id`=$id")->execute([$date]);
+        }
+
+    // Blog
+    // User
     }

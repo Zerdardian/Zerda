@@ -27,6 +27,7 @@ class Steam
             $steam_login_url = 'https://steamcommunity.com/openid/login' . '?' . http_build_query($login_url_params, '', '&');
 
             header("location: $steam_login_url");
+            exit();
         } else {
             $params = [
                 'openid.assoc_handle' => $_GET['openid_assoc_handle'],
@@ -92,6 +93,7 @@ class Steam
             }
 
             header('location: /user/connections');
+            exit();
         }
     }
 
