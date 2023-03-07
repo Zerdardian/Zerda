@@ -39,7 +39,8 @@ var canvas = $("#cropperimg"),
 
 $('input#backgroundpng').on('change', function () {
     $('.cropperarea').removeClass('hidden');
-    var id = $('.story').attr('data-storyid');
+    var id = $('.storyedit').attr('data-storyid');
+    console.log(id);
     if (this.files && this.files[0]) {
         if (this.files[0].type.match(/^image\//)) {
             var reader = new FileReader();
@@ -60,15 +61,17 @@ $('input#backgroundpng').on('change', function () {
                         var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png");
                         var data = {
                             'id': id,
-                            'type': 'picturehead',
+                            'name': 'picturehead',
+                            'insertype': 'picturehead',
+                            'storyid': id,
                             'value': croppedImageDataURL
                         }
-
                         $.ajax({
                             url: "/ajax/admin/story/edit",
                             type: "POST",
                             data: data,
                         }).done(function (response) {
+                            console.log(response);
                             if (response.error == 200) {
                                 location.reload();
                             }

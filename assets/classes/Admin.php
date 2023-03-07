@@ -302,7 +302,11 @@ class Admin
             switch ($_GET[3]) {
                 case 'edit':
                     $story = $this->getStory($_GET[4]);
-                    include_once "./assets/pages/admin/story/edit.php";
+                    if($story['error'] != 404) {
+                        include_once "./assets/pages/admin/story/edit.php";
+                    } else {
+                        include_once "./assets/pages/admin/404.php";
+                    }
                     break;
                 default:
                     $stories = $this->getAllStories();
@@ -384,8 +388,8 @@ class Admin
         switch ($type) {
             case 1:
                 $return['error'] = 200;
-                $return['image'] = "./assets/images/review/" . $picture;
-                $return['url'] = 'style=background-image=url("'.$return['image'].'")';
+                $return['image'] = "/assets/images/review/" . $picture;
+                $return['url'] = 'style=background-image:url("'.$return['image'].'")';
                 break;
         }
         return $return;

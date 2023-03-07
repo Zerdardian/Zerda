@@ -6,7 +6,7 @@ $main = $story['main'];
 <div class="story storyedit adminedit" data-storyid="<?=$story['base']['id']?>">
     <div class="head">
         <label for="backgroundpng">
-            <div class="background" <?php if (!empty($head['background'])) echo $head['background']['link'] ?>></div>
+            <div class="background" <?php if (!empty($head['background'])) echo $head['background']['url'] ?>></div>
         </label>
         <div class="texts">
             <div class="title">

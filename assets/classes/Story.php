@@ -75,7 +75,7 @@
             switch($type) {
                 case 1:
                     $return['error'] = 200;
-                    $return['image'] = "./assets/images/review/".$picture;
+                    $return['image'] = "/assets/images/review/".$picture;
                     break;
             }
             return $return;
@@ -104,7 +104,7 @@
                     $return['main'][$i]['title'] = $data['title'];
                     $return['main'][$i]['description'] = $data['description'];
                     if(!empty($data['picture'])) {
-                        $return['head']['picture'] = $this->setPicture($data['picture'], $data['picturetype']);
+                        $return['main']['picture'] = $this->setPicture($data['picture'], $data['picturetype']);
                     }
                     $i++;
                 }
