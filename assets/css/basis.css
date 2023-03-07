@@ -10,14 +10,14 @@ body {
 }
 @media (min-width: 1800px) {
   html,
-body {
+  body {
     max-width: 1920px;
     min-width: 1800px;
   }
 }
 @media (max-width: 599px) {
   html,
-body {
+  body {
     max-width: 600px;
   }
 }
@@ -151,14 +151,14 @@ body div.main {
 }
 @media (min-width: 1800px) {
   html div.main,
-body div.main {
+  body div.main {
     padding-left: 50px;
     padding-right: 50px;
   }
 }
 @media (max-width: 599px) {
   html div.main,
-body div.main {
+  body div.main {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -634,12 +634,12 @@ body div.main div.review.single div.maincontent div.basiscontent div.content {
 }
 @media (min-width: 1800px) {
   html div.main div.review.single div.maincontent div.basiscontent div.content div.maincontent,
-body div.main div.review.single div.maincontent div.basiscontent div.content div.maincontent {
+  body div.main div.review.single div.maincontent div.basiscontent div.content div.maincontent {
     display: flex;
     flex-wrap: wrap;
   }
   html div.main div.review.single div.maincontent div.basiscontent div.content div.maincontent > *,
-body div.main div.review.single div.maincontent div.basiscontent div.content div.maincontent > * {
+  body div.main div.review.single div.maincontent div.basiscontent div.content div.maincontent > * {
     width: 50%;
     box-sizing: border-box;
   }
@@ -654,7 +654,7 @@ body div.main div.review.single div.maincontent div.basiscontent div.content div
 }
 @media (min-width: 1800px) {
   html div.main div.review.single div.maincontent div.basiscontent div.content div.maincontent div.text,
-body div.main div.review.single div.maincontent div.basiscontent div.content div.maincontent div.text {
+  body div.main div.review.single div.maincontent div.basiscontent div.content div.maincontent div.text {
     width: 70%;
   }
 }
@@ -669,7 +669,7 @@ body div.main div.review.single div.maincontent div.basiscontent div.content div
 }
 @media (min-width: 1800px) {
   html div.main div.review.single div.maincontent div.basiscontent div.content div.maincontent div.image,
-body div.main div.review.single div.maincontent div.basiscontent div.content div.maincontent div.image {
+  body div.main div.review.single div.maincontent div.basiscontent div.content div.maincontent div.image {
     width: 30%;
   }
 }
@@ -886,6 +886,77 @@ html div.main div.review.single div.footer div.links div.link a img,
 body div.main div.review.single div.footer div.links div.link a img {
   width: 100%;
   height: 100%;
+}
+html div.main div.story div.head,
+body div.main div.story div.head {
+  position: relative;
+  width: calc(100% + 100px);
+  margin-left: -50px;
+  height: 250px;
+}
+html div.main div.story div.head div.background,
+body div.main div.story div.head div.background {
+  width: 100%;
+  height: 250px;
+  background-color: rgb(69, 59, 59);
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+html div.main div.story div.head div.texts,
+body div.main div.story div.head div.texts {
+  position: absolute;
+  bottom: -40px;
+  left: 40px;
+  width: 33%;
+  height: 100px;
+  border-radius: 20px;
+  background-color: grey;
+}
+html div.main div.story div.head div.texts div.title,
+body div.main div.story div.head div.texts div.title {
+  padding-left: 20px;
+  padding-top: 10px;
+}
+html div.main div.story div.mainstory,
+body div.main div.story div.mainstory {
+  margin-top: 50px;
+}
+html div.main div.story div.mainstory div.chapter,
+body div.main div.story div.mainstory div.chapter {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+html div.main div.story div.mainstory div.chapter > *,
+body div.main div.story div.mainstory div.chapter > * {
+  width: 50%;
+  box-sizing: border-box;
+}
+html div.main div.story div.mainstory div.chapter.noimage div.texts,
+body div.main div.story div.mainstory div.chapter.noimage div.texts {
+  width: 100% !important;
+}
+html div.main div.story div.mainstory div.chapter.noimage div.picture,
+body div.main div.story div.mainstory div.chapter.noimage div.picture {
+  width: 0 !important;
+}
+html div.main div.story div.mainstory div.chapter div.texts,
+body div.main div.story div.mainstory div.chapter div.texts {
+  width: 70%;
+}
+html div.main div.story div.mainstory div.chapter div.picture,
+body div.main div.story div.mainstory div.chapter div.picture {
+  width: 30%;
+}
+html div.main div.story div.mainstory div.chapter div.picture div.image,
+body div.main div.story div.mainstory div.chapter div.picture div.image {
+  width: 100%;
+  height: 100%;
+}
+html div.main div.story div.mainstory div.chapter div.picture div.image img,
+body div.main div.story div.mainstory div.chapter div.picture div.image img {
+  width: 100%;
 }
 html button,
 html input[type=button],

@@ -68,7 +68,7 @@
             $this->sql->prepare("UPDATE `story` SET `updated`=? WHERE `id`=$id")->execute([$date]);
         }
 
-        public function setStoryPicture(string $picture, int $type) {
+        public function setPicture(string $picture, int $type) {
             $return = [];
             $return['error'] = 404;
 

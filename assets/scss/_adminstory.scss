@@ -1,0 +1,45 @@
+div.story.storyedit.adminedit {
+    input, textarea {
+        border: 0px solid white;
+        background-color: rgba(255, 255, 255, 0);
+
+        font-family: 'Open Sans',
+        sans-serif;
+
+        width: calc(100% - 50px);
+    }
+
+    textarea {
+        min-height: 250px;
+    }
+
+    .head {
+        width: calc(100% + 200px);
+        margin-left: -100px;
+
+        div.texts {
+            div.storytitle {
+                input {
+                    font-size: 30px;
+                }
+            }
+            div.chaptertitle {
+                input {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        input {
+            color: white;
+        }
+    }
+
+    div.chapter {
+        div.title {
+            input {
+                font-size: 20px;
+            }
+        }
+    }
+}

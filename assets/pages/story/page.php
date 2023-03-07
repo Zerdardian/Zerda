@@ -16,14 +16,25 @@
     <div class="mainstory">
         <?php
             foreach($main as $data) {
+                if (empty($data['picture'])) {
+                    $nopic = "noimage";
+                    $empty = true;
+                    $picture = "/assets/images/basis/and-blank-effect-transparent-11546868080xgtiz6hxid.png";
+                } else {
+                    $nopic = "";
+                    if ($data['picturetype'] == 1) {
+                        $empty = false;
+                        $picture = "/assets/images/story/basis/" . $data['picture'];
+                    }
+                }
                 ?>
-                <div class="chapter">
+                <div class="chapter <?=$nopic?>">
                     <div class="texts">
                         <div class="title">
                             <?=$data['title']?>
                         </div>
                         <div class="description">
-                            <?=$data['description']?>
+                            <?=nl2br($data['description'])?>
                         </div>
                     </div>
                     <div class="picture"></div>

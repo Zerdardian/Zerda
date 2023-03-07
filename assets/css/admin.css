@@ -355,3 +355,33 @@ div#adminpages div.cropperarea div.maincropper div.content {
 div#adminpages div.cropperarea div.maincropper div.content div.image canvas#cropperimg {
   max-width: 100%;
 }
+div#adminpages div.cropperarea div.maincropper div.content div.buttons {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+div#adminpages div.story.storyedit.adminedit input, div#adminpages div.story.storyedit.adminedit textarea {
+  border: 0px solid white;
+  background-color: rgba(255, 255, 255, 0);
+  font-family: "Open Sans", sans-serif;
+  width: calc(100% - 50px);
+}
+div#adminpages div.story.storyedit.adminedit textarea {
+  min-height: 250px;
+}
+div#adminpages div.story.storyedit.adminedit .head {
+  width: calc(100% + 200px);
+  margin-left: -100px;
+}
+div#adminpages div.story.storyedit.adminedit .head div.texts div.storytitle input {
+  font-size: 30px;
+}
+div#adminpages div.story.storyedit.adminedit .head div.texts div.chaptertitle input {
+  font-size: 20px;
+}
+div#adminpages div.story.storyedit.adminedit .head input {
+  color: white;
+}
+div#adminpages div.story.storyedit.adminedit div.chapter div.title input {
+  font-size: 20px;
+}
