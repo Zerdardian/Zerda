@@ -308,6 +308,10 @@ class Admin
                         include_once "./assets/pages/admin/404.php";
                     }
                     break;
+                case 'create':
+                case 'add':
+                    include_once "./assets/pages/admin/story/create.php";
+                    break;
                 default:
                     $stories = $this->getAllStories();
                     include_once "./assets/pages/admin/story/all.php";
