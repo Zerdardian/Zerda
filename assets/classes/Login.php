@@ -34,6 +34,7 @@ class Login extends Form
         if ($_SESSION['page'][1] == 'login' || $_SESSION['page'][1] == 'register') {
             if (!empty($_SESSION['user'])) {
                 header('location: /user/');
+                return;
             }
         }
     }
@@ -93,8 +94,10 @@ class Login extends Form
                 $update->execute([$date]);
                 if(!empty($_GET['returnto'])) {
                     header('location: '.$_GET['returnto']);
+                    return;
                 } else {
                     header('location: /user/');
+                    return;
                 }
             }
         }

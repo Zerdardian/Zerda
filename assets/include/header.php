@@ -77,6 +77,13 @@ $pageinfo = $page->getPageInfo();
                             </div>
                         </div>
                     </a>
+                    <a href="/portofolio/">
+                        <div class="portofolio item">
+                            <div class="text">
+                                Portofolio
+                            </div>
+                        </div>
+                    </a>
                     <div class="review item">
                         <a href="/review">
                             <div class="reviewitem">

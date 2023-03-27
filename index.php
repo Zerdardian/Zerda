@@ -1,6 +1,7 @@
 <?php
     use Dotenv\Dotenv;
     $base = $_SERVER['CONTEXT_DOCUMENT_ROOT'];
+    ob_start();
 
     session_start();
     include_once "./vendor/autoload.php";
@@ -21,4 +22,5 @@
     $user = new User($zerdardian->returnSQL());
     $zerdardian->setPageData();
     $zerdardian->setPage();
+    ob_end_flush();
 ?>
